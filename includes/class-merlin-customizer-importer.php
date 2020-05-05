@@ -123,7 +123,9 @@ class Merlin_Customizer_Importer {
 				do_action( 'customize_save_' . $key, $wp_customize );
 			}
 
-			set_theme_mod( $key, $val );
+			if ( $key != 'nav_menu_locations') {
+				set_theme_mod( $key, $val );
+			}
 		}
 
 		if ( $use_wp_customize_save_hooks ) {
