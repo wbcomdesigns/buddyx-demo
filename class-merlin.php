@@ -2128,13 +2128,22 @@ class Merlin {
 	 */
 	public function after_content_import_setup() {
 		// Set static homepage.
-		$homepage = get_page_by_title( apply_filters( 'merlin_content_home_page_title', 'Home' ) );
+		$homepage = get_page_by_title( apply_filters( 'merlin_content_home_page_title', 'Homepage' ) );
 
 		if ( $homepage ) {
 			update_option( 'page_on_front', $homepage->ID );
 			update_option( 'show_on_front', 'page' );
 
 			$this->logger->debug( __( 'The home page was set', 'merlin-wp' ), array( 'homepage_id' => $homepage ) );
+		}
+		
+		$home = get_page_by_title( apply_filters( 'merlin_content_home_page_title', 'Home' ) );
+
+		if ( $home ) {
+			update_option( 'page_on_front', $home->ID );
+			update_option( 'show_on_front', 'page' );
+
+			$this->logger->debug( __( 'The home page was set', 'merlin-wp' ), array( 'homepage_id' => $home ) );
 		}
 
 		// Set static blog page.
@@ -2159,6 +2168,13 @@ class Merlin {
 			
 			if ( $menu->slug == 'main-menu' && strtolower($menu->name) == strtolower('Main Menu') ) {
 				$locations['primary'] = $menu->term_id;				
+			}
+			if ( $menu->slug == 'primary-menu' && strtolower($menu->name) == strtolower('Primary Menu') ) {
+				$locations['primary'] = $menu->term_id;				
+			}
+			
+			if ( $menu->slug == 'user-menu' && strtolower($menu->name) == strtolower('User Menu') ) {
+				$locations['user_menu'] = $menu->term_id;				
 			}
 		}
 		set_theme_mod( 'nav_menu_locations', $locations ); // set menus to locations
