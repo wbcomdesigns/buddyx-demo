@@ -32,6 +32,7 @@ if ( !function_exists( 'bdi_file_includes' ) ) {
 	function bdi_file_includes() {
 		require_once BDI_PLUGIN_PATH . 'vendor/autoload.php';
 		require_once BDI_PLUGIN_PATH . 'class-merlin.php' ;
+		require_once BDI_PLUGIN_PATH . 'includes/buddyx-demo-functions.php' ;
 		require_once BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php';
 	}
 }

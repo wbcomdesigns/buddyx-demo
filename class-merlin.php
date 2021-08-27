@@ -421,6 +421,15 @@ class Merlin {
 		$this->hook_suffix = add_submenu_page(
 			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
+		
+		add_menu_page(
+				esc_html__('Buddyx Demo Data', 'buddyx-demo-Importer'),
+				esc_html__('Buddyx Demo Data', 'buddyx-demo-Importer'),
+				'manage_options',
+				'buddyx-demo-data',
+				array( $this, 'buddyx_bp_demo_data' ),
+				'dashicons-sticky'
+			);
 	}
 
 	/**
@@ -2482,5 +2491,297 @@ class Merlin {
 	public function import_finished() {
 		delete_transient( 'merlin_import_file_base_name' );
 		wp_send_json_success();
+	}
+	
+	public function buddyx_bp_demo_data() {
+		?>
+
+		<div class="wrap" id="buddyx-default-data-page">
+			<style type="text/css">
+				ul li.users {
+					border-bottom: 1px solid #EEEEEE;
+					margin: 0 0 10px;
+					padding: 5px 0
+				}
+
+				ul li.users ul, ul li.groups ul {
+					margin: 5px 0 0 20px
+				}
+
+				#message ul.results li {
+					list-style: disc;
+					margin-left: 25px
+				}
+			</style>
+			<h1><?php esc_html_e( 'BuddyPress Default Data', 'buddyx-demo-Importer' ); ?></h1>
+
+			<?php
+			if ( ! empty( $_POST['buddyx-admin-clear'] ) ) {
+				buddyx_bp_clear_db();
+				echo '<div id="message" class="updated fade"><p>' . esc_html__( 'Everything created by this plugin was successfully deleted.', 'buddyx-demo-Importer' ) . '</p></div>';
+			}
+
+			if ( isset( $_POST['buddyx-admin-submit'] ) ) {
+				// Cound what we have just imported.
+				$imported = array();
+
+				// Check nonce before we do anything.
+				check_admin_referer( 'buddyx-admin' );
+
+				include_once __DIR__ . '/bp-process.php';
+
+				// Import users
+				if ( isset( $_POST['buddyx']['import-users'] ) && ! buddyx_bp_is_imported( 'users', 'users' ) ) {
+					$users             = buddyx_bp_import_users();
+					$imported['users'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s new users', 'buddyx-demo-Importer' ),
+						number_format_i18n( count( $users ) )
+					);
+					buddyx_bp_update_import( 'users', 'users' );
+				}
+
+				if ( isset( $_POST['buddyx']['import-profile'] ) && ! buddyx_bp_is_imported( 'users', 'xprofile' ) ) {
+					$profile             = buddyx_bp_import_users_profile();
+					$imported['profile'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s profile entries', 'buddyx-demo-Importer' ),
+						number_format_i18n( $profile )
+					);
+					buddyx_bp_update_import( 'users', 'xprofile' );
+				}
+
+				if ( isset( $_POST['buddyx']['import-friends'] ) && ! buddyx_bp_is_imported( 'users', 'friends' ) ) {
+					$friends             = buddyx_bp_import_users_friends();
+					$imported['friends'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s friends connections', 'buddyx-demo-Importer' ),
+						number_format_i18n( $friends )
+					);
+					buddyx_bp_update_import( 'users', 'friends' );
+				}
+				
+
+				if ( isset( $_POST['buddyx']['import-activity'] ) && ! buddyx_bp_is_imported( 'users', 'activity' ) ) {
+					$activity             = buddyx_bp_import_users_activity();
+					$imported['activity'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s personal activity items', 'buddyx-demo-Importer' ),
+						number_format_i18n( $activity )
+					);
+					buddyx_bp_update_import( 'users', 'activity' );
+				}
+
+				// Import groups
+				if ( isset( $_POST['buddyx']['import-groups'] ) && ! buddyx_bp_is_imported( 'groups', 'groups' ) ) {
+					$groups             = buddyx_bp_import_groups();
+					$imported['groups'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s new groups', 'buddyx-demo-Importer' ),
+						number_format_i18n( count( $groups ) )
+					/* translators: formatted number. */ );
+					buddyx_bp_update_import( 'groups', 'groups' );
+				}
+				if ( isset( $_POST['buddyx']['import-g-members'] ) && ! buddyx_bp_is_imported( 'groups', 'members' ) ) {
+					$g_members             = buddyx_bp_import_groups_members();
+					$imported['g_members'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s groups members (1 user can be in several groups)', 'buddyx-demo-Importer' ),
+						number_format_i18n( count( $g_members ) )
+					);
+					buddyx_bp_update_import( 'groups', 'members' );
+				}
+
+				//if ( isset( $_POST['buddyx']['import-forums'] ) && ! buddyx_bp_is_imported( 'groups', 'forums' ) ) {
+				//	$forums             = buddyx_bp_import_groups_forums( $groups );
+				//	$imported['forums'] = sprintf( __( '%s groups forum topics', 'buddyx-demo-Importer' ), number_format_i18n( count( $forums ) ) );
+				//  buddyx_bp_update_import( 'groups', 'forums' );
+				//}
+
+				if ( isset( $_POST['buddyx']['import-g-activity'] ) && ! buddyx_bp_is_imported( 'groups', 'activity' ) ) {
+					$g_activity             = buddyx_bp_import_groups_activity();
+					$imported['g_activity'] = sprintf( /* translators: formatted number. */
+						esc_html__( '%s groups activity items', 'buddyx-demo-Importer' ),
+						number_format_i18n( $g_activity )
+					);
+					buddyx_bp_update_import( 'groups', 'activity' );
+				}
+				?>
+
+				<div id="message" class="updated fade">
+					<p>
+						<?php
+						esc_html_e( 'Data was successfully imported', 'buddyx-demo-Importer' );
+						if ( count( $imported ) > 0 ) {
+							echo ':<ul class="results"><li>';
+							echo implode( '</li><li>', $imported );
+							echo '</li></ul>';
+						} ?>
+					</p>
+				</div>
+
+				<?php
+			} ?>
+
+			<form action="" method="post" id="buddyx-admin-form">
+				<script type="text/javascript">
+					jQuery( document ).ready( function( $ ) {
+						$( '#import-profile, #import-friends, #import-activity' ).click( function() {
+							if ( $( this ).attr( 'checked' ) === 'checked' && !$( '#import-users' ).attr( 'disabled' ) ) {
+								$( '#import-users' ).attr( 'checked', 'checked' );
+							}
+						} );
+						$( '#import-users' ).click( function() {
+							if ( $( this ).attr( 'checked' ) !== 'checked' ) {
+								$( '#import-profile, #import-friends, #import-activity' ).removeAttr( 'checked' );
+							}
+						} );
+
+						$( '#import-forums, #import-g-members, #import-g-activity' ).click( function() {
+							if ( $( this ).attr( 'checked' ) === 'checked' && !$( '#import-groups' ).attr( 'disabled' ) ) {
+								$( '#import-groups' ).attr( 'checked', 'checked' );
+							}
+						} );
+						$( '#import-groups' ).click( function() {
+							if ( $( this ).attr( 'checked' ) !== 'checked' ) {
+								$( '#import-forums, #import-g-members, #import-g-activity' ).removeAttr( 'checked' );
+							}
+						} );
+
+						$( '#buddyx-admin-clear' ).click( function() {
+							if ( confirm( '<?php echo esc_js( esc_html__( 'Are you sure you want to delete all *imported* content - users, groups, messages, activities, forum topics etc? Content, that was created by you and others, and not by this plugin, will not be deleted.', 'buddyx-demo-Importer' ) ); ?>' ) ) {
+								return true;
+							}
+
+							return false;
+						} );
+
+						$( '#usage-tracking' ).click( function() {
+							var $checkbox = $( this );
+							$.ajax( {
+								 type: 'POST',
+								 url: ajaxurl,
+								 data: {
+									 action: 'buddyx_bp_ajax_usage_tracking_toggle',
+								 },
+								 beforeSend: function() {
+									 $checkbox.attr( 'disabled', true );
+								 },
+							 } )
+							 .always( function() {
+								 $checkbox.removeAttr( 'disabled' );
+							 } );
+						} );
+					} );
+				</script>
+
+				<p><?php esc_html_e( 'Please do not mess importing users and their data with groups on a slow server (or shared hosting). Importing is rather heavy process, so please finish with members first and then work with groups.', 'buddyx-demo-Importer' ); ?></p>
+
+				<h3><?php esc_html_e( 'What do you want to import?', 'buddyx-demo-Importer' ); ?></h3>
+
+				<ul class="items">
+					<li class="users">
+						<label for="import-users">
+							<input type="checkbox" name="buddyx[import-users]" id="import-users" value="1" <?php buddyx_bp_imported_disabled( 'users', 'users' ) ?>/>
+							<?php esc_html_e( 'Users', 'buddyx-demo-Importer' ); ?>
+
+							<span class="description"><?php echo wp_kses( __( '- all imported users have the same password: <code>1234567890</code>', 'buddyx-demo-Importer' ), array( 'code' => true ) ); ?></span>
+						</label>
+
+						<ul>
+							<?php if ( bp_is_active( 'xprofile' ) ) : ?>
+								<li>
+									<label for="import-profile">
+										<input type="checkbox" name="buddyx[import-profile]" id="import-profile"
+											value="1" <?php buddyx_bp_imported_disabled( 'users', 'xprofile' ) ?>/>
+										<?php esc_html_e( 'Profile data (profile groups and fields with values, won\'t generate activity records)', 'buddyx-demo-Importer' ); ?>
+									</label>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( bp_is_active( 'friends' ) ) : ?>
+								<li>
+									<label for="import-friends">
+										<input type="checkbox" name="buddyx[import-friends]" id="import-friends"
+											value="1" <?php buddyx_bp_imported_disabled( 'users', 'friends' ) ?>/>
+										<?php esc_html_e( 'Friends connections', 'buddyx-demo-Importer' ); ?>
+									</label>
+								</li>
+							<?php endif; ?>
+
+							<?php if ( bp_is_active( 'activity' ) ) : ?>
+								<li>
+									<label for="import-activity">
+										<input type="checkbox" name="buddyx[import-activity]" id="import-activity"
+											value="1" <?php buddyx_bp_imported_disabled( 'users', 'activity' ) ?>/>
+										<?php esc_html_e( 'Activity posts', 'buddyx-demo-Importer' ); ?>
+									</label>
+								</li>
+							<?php endif; ?>
+
+						</ul>
+					</li>
+
+					<?php if ( bp_is_active( 'groups' ) ) : ?>
+						<li class="groups">
+							<label for="import-groups">
+								<input type="checkbox" name="buddyx[import-groups]" id="import-groups"
+									value="1" <?php buddyx_bp_imported_disabled( 'groups', 'groups' ) ?>/>
+								<?php esc_html_e( 'Groups', 'buddyx-demo-Importer' ); ?></label>
+							<ul>
+
+								<li>
+									<label for="import-g-members">
+										<input type="checkbox" name="buddyx[import-g-members]" id="import-g-members"
+											value="1" <?php buddyx_bp_imported_disabled( 'groups', 'members' ) ?>/>
+										<?php esc_html_e( 'Members', 'buddyx-demo-Importer' ); ?>
+									</label>
+								</li>
+
+								<?php if ( bp_is_active( 'activity' ) ) : ?>
+									<li>
+										<label for="import-g-activity">
+											<input type="checkbox" name="buddyx[import-g-activity]" id="import-g-activity"
+												value="1" <?php buddyx_bp_imported_disabled( 'groups', 'activity' ) ?>/>
+											<?php esc_html_e( 'Activity posts', 'buddyx-demo-Importer' ); ?>
+										</label>
+									</li>
+								<?php endif; ?>
+
+								<?php if ( bp_is_active( 'forums' ) && function_exists( 'bp_forums_is_installed_correctly' ) && bp_forums_is_installed_correctly() ) : ?>
+									<li>
+										<label for="import-forums">
+											<input type="checkbox" disabled name="buddyx[import-forums]" id="import-forums"
+												value="1" <?php buddyx_bp_imported_disabled( 'groups', 'forums' ) ?>/>
+											<?php esc_html_e( 'Forum topics and posts', 'buddyx-demo-Importer' ); ?>
+										</label>
+									</li>
+
+								<?php else: ?>
+									<li>
+										<?php
+										echo wp_kses(
+											__( '<strong>Note:</strong> You can\'t import anything forums-related, because Forum Component is not installed correctly. Please recheck your settings.', 'buddyx-demo-Importer' ),
+											array(
+												'strong' => true,
+											)
+										); ?>
+									</li>
+								<?php endif; ?>
+
+							</ul>
+						</li>
+					<?php endif; ?>
+
+				</ul>
+				<!-- .items -->
+
+				<p class="submit">
+					<input class="button-primary" type="submit" name="buddyx-admin-submit" id="buddyx-admin-submit"
+						value="<?php esc_attr_e( 'Import Selected Data', 'buddyx-demo-Importer' ); ?>" />
+					<input class="button" type="submit" name="buddyx-admin-clear" id="buddyx-admin-clear"
+						value="<?php esc_attr_e( 'Clear BuddyPress Data', 'buddyx-demo-Importer' ); ?>" />
+				</p>				
+
+				<?php wp_nonce_field( 'buddyx-admin' ); ?>
+
+			</form>
+			<!-- #buddyx-admin-form -->
+		</div><!-- .wrap -->
+		<?php
 	}
 }
