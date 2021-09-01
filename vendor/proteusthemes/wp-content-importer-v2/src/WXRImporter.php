@@ -973,7 +973,7 @@ class WXRImporter extends \WP_Importer {
 
 		$this->process_comments( $comments, $post_id, $data );
 		$this->process_post_meta( $meta, $post_id, $data );
-
+		update_post_meta( $post_id, '_demo_data_imported', 1 );
 		if ( 'nav_menu_item' === $data['post_type'] ) {
 			$this->process_menu_item_meta( $post_id, $data, $meta );
 		}

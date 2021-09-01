@@ -420,10 +420,14 @@ function PluginManager(){
             }
             var $items = $(".merlin__drawer--import-content__list-item");
             var $enabled_items = $(".merlin__drawer--import-content__list-item input:checked");
-            $items.each(function(){
+			
+			
+            $items.each(function(){				
+				
                 if (current_item == "" || do_next) {
                     current_item = $(this).data("content");
                     $current_node = $(this);
+					init_content_import_progress_bar( current_item );
                     process_current();
                     do_next = false;
                 } else if ($(this).data("content") == current_item) {
@@ -435,21 +439,21 @@ function PluginManager(){
             }
         }
 
-        function init_content_import_progress_bar() {
-            if( ! $(".merlin__drawer--import-content__list-item .checkbox-content").is( ':checked' ) ) {
-                return false;
+        function init_content_import_progress_bar( current_item ) {
+            if( ! $(".merlin__drawer--import-content__list-item .checkbox-content").is( ':checked' ) && ! $(".merlin__drawer--import-content__list-item .checkbox-page-content").is( ':checked' ) ) {
+                //return false;
             }
-
-            jQuery.post(merlin_params.ajaxurl, {
+			
+            jQuery.post(merlin_params.ajaxurl + '?' + $( 'form#import-demo-content' ).serialize(), {
                 action: "merlin_get_total_content_import_items",
                 wpnonce: merlin_params.wpnonce,
+				current_item : current_item,
                 selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
             }, function( response ) {
                 total_content_import_items = response.data;
 
                 if ( 0 < total_content_import_items ) {
                     update_progress_bar();
-
                     // Change the value of the progress bar constantly for a small amount (0,2% per sec), to improve UX.
                     progress_bar_interval = setInterval( function() {
                         current_content_import_items = current_content_import_items + total_content_import_items/500;
@@ -507,7 +511,7 @@ function PluginManager(){
 				        window.location.href=btn.href;
 				    },4000);
                 };
-                init_content_import_progress_bar();
+                //init_content_import_progress_bar();
                 find_next();
             }
         }
