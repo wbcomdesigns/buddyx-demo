@@ -363,7 +363,7 @@ function PluginManager(){
                 }
 
                 if(typeof response.url !== "undefined"){
-                    // we have an ajax url action to perform.
+                    // we have an ajax url action to perform.					
                     if(response.hash === current_item_hash){
                         currentSpan.addClass("status--failed");
                         find_next();
@@ -508,7 +508,7 @@ function PluginManager(){
 				    },3400);
 
                     setTimeout(function(){
-				        window.location.href=btn.href;
+						window.location.href=btn.href;
 				    },4000);
                 };
                 //init_content_import_progress_bar();

@@ -28,14 +28,6 @@
 <wp:wxr_version>1.2</wp:wxr_version>
 <wp:base_site_url>http:</wp:base_site_url>
 <wp:base_blog_url>http:</wp:base_blog_url>
-<wp:author>
-  <wp:author_id>1</wp:author_id>
-  <wp:author_login>shopmanager</wp:author_login>
-  <wp:author_email>info@woocommerce.com</wp:author_email>
-  <wp:author_display_name><![CDATA[Shop Manager]]></wp:author_display_name>
-  <wp:author_first_name><![CDATA[]]></wp:author_first_name>
-  <wp:author_last_name><![CDATA[]]></wp:author_last_name>
-</wp:author>
 <generator>https://wordpress.org/?v=5.0.3</generator>
 <item>
   <title>V-Neck T-Shirt</title>
