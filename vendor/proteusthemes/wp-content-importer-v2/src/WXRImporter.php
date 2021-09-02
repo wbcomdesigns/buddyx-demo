@@ -741,6 +741,7 @@ class WXRImporter extends \WP_Importer {
 	 * @param array $terms    Terms on the post.
 	 */
 	protected function process_post( $data, $meta, $comments, $terms ) {
+		global $wpdb;
 		/**
 		 * Pre-process post data.
 		 *
@@ -863,6 +864,17 @@ class WXRImporter extends \WP_Importer {
 			$remote_url = ! empty( $data['attachment_url'] ) ? $data['attachment_url'] : $data['guid'];
 			$post_id = $this->process_attachment( $postdata, $meta, $remote_url );
 		} else {
+			
+			$object = $wpdb->get_row( $wpdb->prepare(
+				"SELECT ID FROM $wpdb->posts WHERE post_name = '%s' AND post_type = '%s'",
+				$postdata['post_name'],
+				$postdata['post_type']
+			) );
+
+			if ( null != $object ) {
+				return false;
+			}
+			
 			$post_id = wp_insert_post( $postdata, true );
 			do_action( 'wp_import_insert_post', $post_id, $original_id, $postdata, $data );
 		}
