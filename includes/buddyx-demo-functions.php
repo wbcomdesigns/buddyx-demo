@@ -52,6 +52,27 @@ function buddyx_bp_clear_db() {
 	buddyx_bp_delete_import_records();
 }
 
+function buddyx_demo_clear_db() {
+	$args = array(
+			'post_type'		=> ['any','nav_menu_item'],
+			'posts_per_page'=> -1,
+			'post_status'	=> ['any'],
+			'order' 		=> 'ASC',
+			'meta_key' 		=> '_demo_data_imported',
+			'meta_value'	=> 1
+		);
+		
+	$buddyx_demo_post = new WP_Query( $args );	
+	
+	if ( $buddyx_demo_post->have_posts()) {
+		while ( $buddyx_demo_post->have_posts() ){
+			$buddyx_demo_post->the_post();
+			wp_delete_post( get_the_id(), true);
+		}
+	}
+
+}
+
 /**
  * Fix the date issue, when all joined_group events took place at the same time.
  *

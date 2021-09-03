@@ -432,6 +432,14 @@ class Merlin {
 				array( $this, 'buddyx_bp_demo_data' ),
 				'dashicons-sticky'
 			);
+		add_submenu_page(
+				'buddyx-demo-data',
+				'Delete Demo Data',
+				'Delete Demo Data',
+				'manage_options',
+				'buddyx-demo-delete-data',
+				array( $this, 'buddyx_demo_data_delete' )
+			);
 	}
 
 	/**
@@ -2908,6 +2916,28 @@ class Merlin {
 			</form>
 			<!-- #buddyx-admin-form -->
 		</div><!-- .wrap -->
+		<?php
+	}
+	
+	public function buddyx_demo_data_delete() {
+		
+		if ( ! empty( $_POST['buddyx-admin-clear'] ) ) {
+			buddyx_bp_clear_db();
+			buddyx_demo_clear_db();
+			echo '<div id="message" class="updated fade"><p>' . esc_html__( 'Everything created by this plugin was successfully deleted.', 'buddyx-demo-Importer' ) . '</p></div>';
+		}
+		?>
+		<div class="wrap" id="buddyx-default-data-page">
+			<h1><?php esc_html_e( 'Delete Buddyx Default Data', 'buddyx-demo-Importer' ); ?></h1>
+			<form action="" method="post" id="buddyx-admin-form">
+				
+				<p class="submit">
+					
+					<input class="button" type="submit" name="buddyx-admin-clear" id="buddyx-admin-clear" value="<?php esc_attr_e( 'Clear Buddyx Default Data', 'buddyx-demo-Importer' ); ?>" />
+				</p>	
+				<?php wp_nonce_field( 'buddyx-admin' ); ?>
+			</form>
+		</div>
 		<?php
 	}
 }
