@@ -2162,6 +2162,40 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 }
 
+.checkbox:checked + label.installing:before {
+        content: "\f463";
+        font-family: 'dashicons';
+        display: block;
+        position: absolute;
+        right: -22px;
+        z-index: 9;
+        font-size: 18px;
+        -webkit-animation:spin 2s linear infinite;
+        -moz-animation:spin 2s linear infinite;
+        animation:spin 2s linear infinite;
+}
+
+.checkbox:checked + label.installing.success:before {
+        content: none;
+}
+
+@-moz-keyframes spin { 
+        100% { 
+            -moz-transform: rotate(360deg);
+        } 
+}
+@-webkit-keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg); 
+        } 
+}
+@keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform:rotate(360deg);
+        } 
+}
+
 .checkbox:checked + label.success i {
 	-webkit-animation: popInSuccess 500ms forwards;
 	animation: popInSuccess 500ms forwards;
