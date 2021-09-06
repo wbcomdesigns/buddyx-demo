@@ -425,8 +425,8 @@ class Merlin {
 		);
 		
 		add_menu_page(
-				esc_html__('Buddyx Demo Data', 'buddyx-demo-Importer'),
-				esc_html__('Buddyx Demo Data', 'buddyx-demo-Importer'),
+				esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
+				esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
 				'manage_options',
 				'buddyx-demo-data',
 				array( $this, 'buddyx_bp_demo_data' ),
