@@ -289,7 +289,7 @@ class Merlin {
 			}
 		}
 
-		// Get the logger object, so it can be used in the whole class.		
+		// Get the logger object, so it can be used in the whole class.
 		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-logger.php';
 		$this->logger = Merlin_Logger::get_instance();
 
@@ -333,9 +333,9 @@ class Merlin {
 		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $this->logger );
 
 		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-widget-importer.php';
-		
+
 		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-buddypress-importer.php';
-		
+
 		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-csframework-importer.php';
 
 		if ( ! class_exists( 'WP_Customize_Setting' ) ) {
@@ -423,7 +423,7 @@ class Merlin {
 		$this->hook_suffix = add_submenu_page(
 			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
-		
+
 		if ( class_exists( 'buddypress' ) ) {
 			add_menu_page(
 					esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
@@ -441,7 +441,7 @@ class Merlin {
 					'buddyx-demo-delete-data',
 					array( $this, 'buddyx_demo_data_delete' )
 				);
-		} 
+		}
 	}
 
 	/**
@@ -1221,7 +1221,7 @@ class Merlin {
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
 		</div>
-		
+
 		<form action="" method="post" class="<?php echo esc_attr( $multi_import ); ?>">
 
 			<ul class="merlin__drawer merlin__drawer--import-content js-merlin-drawer-import-content">
@@ -1821,7 +1821,7 @@ class Merlin {
 		if ( null === $content ) {
 			$content = $this->get_import_data( $selected_import );
 		}
-		
+
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['content'] ) && isset( $content[ $_POST['content'] ] ) ) {
 			$this->logger->error( __( 'The content importer AJAX call failed to start, because of incorrect data', 'merlin-wp' ) );
 
@@ -1845,9 +1845,9 @@ class Merlin {
 						'data'  => $this_content['data'],
 					)
 				);
-				
+
 				$logs = call_user_func( $this_content['install_callback'], $this_content['data'] );
-				
+
 				if ( $logs ) {
 					$json = array(
 						'done'    => 1,
@@ -1919,13 +1919,13 @@ class Merlin {
 
 		$selected_import = intval( $_POST['selected_index'] );
 		$import_files    = $this->get_import_files_paths( $selected_import );
-		
-		$total_records = $this->importer->get_number_of_posts_to_import( $import_files['content'] ) + $this->importer->get_number_of_posts_to_import( $import_files['page-content'] );	
+
+		$total_records = $this->importer->get_number_of_posts_to_import( $import_files['content'] ) + $this->importer->get_number_of_posts_to_import( $import_files['page-content'] );
 
 		if ( class_exists( 'woocommerce' ) ) {
-			$total_records = $total_records + $this->importer->get_number_of_posts_to_import( $import_files['products-content'] );	 
+			$total_records = $total_records + $this->importer->get_number_of_posts_to_import( $import_files['products-content'] );
 		}
-		$total_records = $this->importer->get_number_of_posts_to_import( $import_files[$_POST['current_item']] ) ;	
+		$total_records = $this->importer->get_number_of_posts_to_import( $import_files[$_POST['current_item']] ) ;
 		wp_send_json_success( $total_records );
 	}
 
@@ -1942,7 +1942,7 @@ class Merlin {
 		$import_data = array(
 			'content' => false,
 			'products-content'=> false,
-			'page-content' => false,			
+			'page-content' => false,
 			'buddypress'   => false,
 			'widgets'      => false,
 			'options'      => false,
@@ -1961,20 +1961,20 @@ class Merlin {
 		) {
 			$import_data['content'] = true;
 		}
-		
+
 		if (
 			! empty( $this->import_files[ $selected_import_index ]['import_page_file_url'] ) ||
 			! empty( $this->import_files[ $selected_import_index ]['local_import_page_file'] )
 		) {
 			$import_data['page-content'] = true;
 		}
-		
-		if ( class_exists( 'woocommerce' ) && 
+
+		if ( class_exists( 'woocommerce' ) &&
 			( ! empty( $this->import_files[ $selected_import_index ]['import_products_file_url'] ) ||
 			! empty( $this->import_files[ $selected_import_index ]['local_import_products_file'] ) )) {
 			$import_data['products-content'] = true;
 		}
-		
+
 		if ( class_exists( 'buddypress' ) ) {
 			$import_data['buddypress'] = true;
 		}
@@ -1999,7 +1999,7 @@ class Merlin {
 		) {
 			$import_data['sliders'] = true;
 		}
-		
+
 		if (
 			! empty( $this->import_files[ $selected_import_index ]['import_cs_framework_file_url'] ) ||
 			! empty( $this->import_files[ $selected_import_index ]['local_import_cs_framework_file'] )
@@ -2057,7 +2057,7 @@ class Merlin {
 				'install_callback' => array( $this->importer, 'import' ),
 				'data'             => $import_files['page-content'],
 			);
-		}	
+		}
 
 		if ( isset($_REQUEST['content']) && $_REQUEST['content'] == 'products-content' && ! empty( $import_files['products-content'] ) ) {
 			$content['products-content'] = array(
@@ -2070,8 +2070,8 @@ class Merlin {
 				'install_callback' => array( $this->importer, 'import' ),
 				'data'             => $import_files['products-content'],
 			);
-		}		
-		
+		}
+
 		if ( isset($_REQUEST['content']) && $_REQUEST['content'] == 'buddypress' ) {
 			$content['buddypress'] = array(
 				'title'            => esc_html__( 'Content', 'merlin-wp' ),
@@ -2084,7 +2084,7 @@ class Merlin {
 				'data'             => '',
 			);
 		}
-		
+
 
 		if ( ! empty( $import_files['widgets'] ) ) {
 			$content['widgets'] = array(
@@ -2111,7 +2111,7 @@ class Merlin {
 				'data'             => $import_files['sliders'],
 			);
 		}
-		
+
 		if ( ! empty( $import_files['csframework'] ) ) {
 			$content['csframework'] = array(
 				'title'            => esc_html__( 'CSFramework', 'merlin-wp' ),
@@ -2124,7 +2124,7 @@ class Merlin {
 				'data'             => $import_files['csframework'],
 			);
 		}
-		
+
 		if ( ! empty( $import_files['options'] ) ) {
 			$content['options'] = array(
 				'title'            => esc_html__( 'Options', 'merlin-wp' ),
@@ -2137,7 +2137,7 @@ class Merlin {
 				'data'             => $import_files['options'],
 			);
 		}
-	
+
 		if ( ! empty( $import_files['redux'] ) ) {
 			$content['redux'] = array(
 				'title'            => esc_html__( 'Redux Options', 'merlin-wp' ),
@@ -2163,8 +2163,8 @@ class Merlin {
 				'data'             => $selected_import_index,
 			);
 		}
-		
-		
+
+
 		$content = apply_filters( 'merlin_get_base_content', $content, $this );
 
 		return $content;
@@ -2198,8 +2198,8 @@ class Merlin {
 	 *
 	 * @return array The updated data.
 	 */
-	public function pt_importer_new_ajax_request_response_data( $data ) {		
-		
+	public function pt_importer_new_ajax_request_response_data( $data ) {
+
 		$data['url']      = admin_url( 'admin-ajax.php' );
 		$data['message']  = esc_html__( 'Installing', 'merlin-wp' );
 		$data['proceed']  = 'true';
@@ -2224,7 +2224,7 @@ class Merlin {
 
 			$this->logger->debug( __( 'The home page was set', 'merlin-wp' ), array( 'homepage_id' => $homepage ) );
 		}
-		
+
 		$home = get_page_by_title( apply_filters( 'merlin_content_home_page_title', 'Home' ) );
 
 		if ( $home ) {
@@ -2243,26 +2243,26 @@ class Merlin {
 
 			$this->logger->debug( __( 'The blog page was set', 'merlin-wp' ), array( 'blog_page_id' => $blogpage ) );
 		}
-		
+
 		/*
 		 * Assign Import Menus
 		 */
 		// Set imported menus to registered theme locations
-		
+
 		$locations = get_theme_mod( 'nav_menu_locations' ); // registered menu locations in theme
-		$registered_menus = wp_get_nav_menus(); // registered menus				
+		$registered_menus = wp_get_nav_menus(); // registered menus
 		// Assign Menu Name to Registered menus as array keys
 		foreach( $registered_menus as $menu ) {
-			
+
 			if ( $menu->slug == 'main-menu' && strtolower($menu->name) == strtolower('Main Menu') ) {
-				$locations['primary'] = $menu->term_id;				
+				$locations['primary'] = $menu->term_id;
 			}
 			if ( $menu->slug == 'primary-menu' && strtolower($menu->name) == strtolower('Primary Menu') ) {
-				$locations['primary'] = $menu->term_id;				
+				$locations['primary'] = $menu->term_id;
 			}
-			
+
 			if ( $menu->slug == 'user-menu' && strtolower($menu->name) == strtolower('User Menu') ) {
-				$locations['user_menu'] = $menu->term_id;				
+				$locations['user_menu'] = $menu->term_id;
 			}
 		}
 		set_theme_mod( 'nav_menu_locations', $locations ); // set menus to locations
@@ -2389,8 +2389,8 @@ class Merlin {
 			$content_page_filename = 'content-page-' . $base_file_name . '.xml';
 
 			// Retrieve the content import file.
-			$import_files['page-content'] = $downloader->fetch_existing_file( $content_page_filename );	
-			
+			$import_files['page-content'] = $downloader->fetch_existing_file( $content_page_filename );
+
 			// Download the file, if it's missing.
 			if ( empty( $import_files['page-content'] ) ) {
 				$import_files['page-content'] = $downloader->download_file( $selected_import_data['import_page_file_url'], $content_page_filename );
@@ -2399,10 +2399,10 @@ class Merlin {
 			// Reset the variable, if there was an error.
 			if ( is_wp_error( $import_files['page-content'] ) ) {
 				$import_files['page-content'] = '';
-			}			
-			
+			}
+
 		}
-		
+
 		/* Products Content */
 		if ( empty( $selected_import_data['import_products_file_url'] ) ) {
 			if ( ! empty( $selected_import_data['local_import_products_file'] ) && file_exists( $selected_import_data['local_import_products_file'] ) ) {
@@ -2413,8 +2413,8 @@ class Merlin {
 			$content_page_filename = 'content-products-' . $base_file_name . '.xml';
 
 			// Retrieve the content import file.
-			$import_files['products-content'] = $downloader->fetch_existing_file( $content_page_filename );	
-			
+			$import_files['products-content'] = $downloader->fetch_existing_file( $content_page_filename );
+
 			// Download the file, if it's missing.
 			if ( empty( $import_files['products-content'] ) ) {
 				$import_files['products-content'] = $downloader->download_file( $selected_import_data['import_products_file_url'], $content_page_filename );
@@ -2423,12 +2423,12 @@ class Merlin {
 			// Reset the variable, if there was an error.
 			if ( is_wp_error( $import_files['products-content'] ) ) {
 				$import_files['products-content'] = '';
-			}			
-			
+			}
+
 		}
-		
-		
-		
+
+
+
 
 		// Get widgets file as well. If defined!
 		if ( ! empty( $selected_import_data['import_widget_file_url'] ) ) {
@@ -2498,7 +2498,7 @@ class Merlin {
 				$import_files['sliders'] = $selected_import_data['local_import_rev_slider_file'];
 			}
 		}
-		
+
 		// Get CSFramework file as well. If defined!
 		if ( ! empty( $selected_import_data['import_cs_framework_file_url'] ) ) {
 			// Set the filename string for csframework_filename import file.
@@ -2604,11 +2604,11 @@ class Merlin {
 				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
 					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox checkbox-<?php echo esc_attr( $slug ); ?>" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked >
 					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
-						<i></i><span><?php 
+						<i></i><span><?php
 						if ( $slug == 'content') {
-							echo 'Post'; 
+							echo 'Post';
 						} else {
-							echo esc_html( ucfirst( trim(str_replace( ['-','_', 'content'], [' '], $slug ) ) )); 
+							echo esc_html( ucfirst( trim(str_replace( ['-','_', 'content'], [' '], $slug ) ) ));
 						}?>
 						</span>
 					</label>
@@ -2628,7 +2628,7 @@ class Merlin {
 		delete_transient( 'merlin_import_file_base_name' );
 		wp_send_json_success();
 	}
-	
+
 	public function buddyx_bp_demo_data() {
 		?>
 
@@ -2693,7 +2693,7 @@ class Merlin {
 					);
 					buddyx_bp_update_import( 'users', 'friends' );
 				}
-				
+
 
 				if ( isset( $_POST['buddyx']['import-activity'] ) && ! buddyx_bp_is_imported( 'users', 'activity' ) ) {
 					$activity             = buddyx_bp_import_users_activity();
@@ -2911,7 +2911,7 @@ class Merlin {
 						value="<?php esc_attr_e( 'Import Selected Data', 'buddyx-demo-Importer' ); ?>" />
 					<input class="button" type="submit" name="buddyx-admin-clear" id="buddyx-admin-clear"
 						value="<?php esc_attr_e( 'Clear BuddyPress Data', 'buddyx-demo-Importer' ); ?>" />
-				</p>				
+				</p>
 
 				<?php wp_nonce_field( 'buddyx-admin' ); ?>
 
@@ -2920,9 +2920,9 @@ class Merlin {
 		</div><!-- .wrap -->
 		<?php
 	}
-	
+
 	public function buddyx_demo_data_delete() {
-		
+
 		if ( ! empty( $_POST['buddyx-admin-clear'] ) ) {
 			if ( class_exists( 'buddypress' ) ) {
 				buddyx_bp_clear_db();
@@ -2932,13 +2932,13 @@ class Merlin {
 		}
 		?>
 		<div class="wrap" id="buddyx-default-data-page">
-			<h1><?php esc_html_e( 'Delete Buddyx Default Data', 'buddyx-demo-Importer' ); ?></h1>
+			<h1><?php esc_html_e( 'Delete BuddyX Default Data', 'buddyx-demo-Importer' ); ?></h1>
 			<form action="" method="post" id="buddyx-admin-form">
-				
+
 				<p class="submit">
-					
-					<input class="button" type="submit" name="buddyx-admin-clear" id="buddyx-admin-clear" value="<?php esc_attr_e( 'Clear Buddyx Default Data', 'buddyx-demo-Importer' ); ?>" />
-				</p>	
+
+					<input class="button" type="submit" name="buddyx-admin-clear" id="buddyx-admin-clear" value="<?php esc_attr_e( 'Clear BuddyX Default Data', 'buddyx-demo-Importer' ); ?>" />
+				</p>
 				<?php wp_nonce_field( 'buddyx-admin' ); ?>
 			</form>
 		</div>
