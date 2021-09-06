@@ -61,3 +61,22 @@ function bdi_activated_plugin_redirect($plugin){
 		}
 	}
 }
+
+
+add_filter( 'buddyx_plugin_install', 'buddyx_demo_plugin_installer' );
+function buddyx_demo_plugin_installer( $plugins ) {
+	
+	
+	$plugins[] = array(
+					'name'     => 'BuddyPress',
+					'slug'     => 'buddypress',
+					'required' => false,
+				);
+	$plugins[] = array(
+					'name'     => 'WooCommerce',
+					'slug'     => 'woocommerce',
+					'required' => false,
+				);
+	
+	return $plugins;
+}
