@@ -424,22 +424,24 @@ class Merlin {
 			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
 		
-		add_menu_page(
-				esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
-				esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
-				'manage_options',
-				'buddyx-demo-data',
-				array( $this, 'buddyx_bp_demo_data' ),
-				'dashicons-sticky'
-			);
-		add_submenu_page(
-				'buddyx-demo-data',
-				'Delete Demo Data',
-				'Delete Demo Data',
-				'manage_options',
-				'buddyx-demo-delete-data',
-				array( $this, 'buddyx_demo_data_delete' )
-			);
+		if ( class_exists( 'buddypress' ) ) {
+			add_menu_page(
+					esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
+					esc_html__('BuddyX Demo Data', 'buddyx-demo-Importer'),
+					'manage_options',
+					'buddyx-demo-data',
+					array( $this, 'buddyx_bp_demo_data' ),
+					'dashicons-sticky'
+				);
+			add_submenu_page(
+					'buddyx-demo-data',
+					'Delete Demo Data',
+					'Delete Demo Data',
+					'manage_options',
+					'buddyx-demo-delete-data',
+					array( $this, 'buddyx_demo_data_delete' )
+				);
+		} 
 	}
 
 	/**
@@ -2922,7 +2924,9 @@ class Merlin {
 	public function buddyx_demo_data_delete() {
 		
 		if ( ! empty( $_POST['buddyx-admin-clear'] ) ) {
-			buddyx_bp_clear_db();
+			if ( class_exists( 'buddypress' ) ) {
+				buddyx_bp_clear_db();
+			}
 			buddyx_demo_clear_db();
 			echo '<div id="message" class="updated fade"><p>' . esc_html__( 'Everything created by this plugin was successfully deleted.', 'buddyx-demo-Importer' ) . '</p></div>';
 		}
