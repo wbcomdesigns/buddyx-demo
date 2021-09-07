@@ -84,30 +84,44 @@ var Merlin = (function($){
             }
         });
 
-				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
-					var selectedIndex  = $( this ).val();
+		$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
+			var selectedIndex  = $( this ).val();
 
-					$( '.js-merlin-select-spinner' ).show();
+			$( '.js-merlin-select-spinner' ).show();
 
-					$.post( merlin_params.ajaxurl, {
-						action: 'merlin_update_selected_import_data_info',
-						wpnonce: merlin_params.wpnonce,
-						selected_index: selectedIndex,
-					}, function( response ) {
-						if ( response.success ) {
-							$( '.js-merlin-drawer-import-content' ).html( response.data );
-						}
-						else {
-							alert( merlin_params.texts.something_went_wrong );
-						}
+			$.post( merlin_params.ajaxurl, {
+				action: 'merlin_update_selected_import_data_info',
+				wpnonce: merlin_params.wpnonce,
+				selected_index: selectedIndex,
+			}, function( response ) {
+				if ( response.success ) {
+					$( '.js-merlin-drawer-import-content' ).html( response.data );
+				}
+				else {
+					alert( merlin_params.texts.something_went_wrong );
+				}
 
-						$( '.js-merlin-select-spinner' ).hide();
-					} )
-						.fail( function() {
-							$( '.js-merlin-select-spinner' ).hide();
-							alert( merlin_params.texts.something_went_wrong )
-						} );
+				$( '.js-merlin-select-spinner' ).hide();
+			} )
+				.fail( function() {
+					$( '.js-merlin-select-spinner' ).hide();
+					alert( merlin_params.texts.something_went_wrong )
 				} );
+		} );
+		
+		var pre_theme_demo,selectedIndex;
+		$("#merlin_select_import_demo").on('focus, focusin', function () {
+			// Store the current value on focus and on change
+			pre_theme_demo = this.value;
+			
+		})
+		$(document).on('change', '#merlin_select_import_demo', function () {				
+			
+			selectedIndex  = $( this ).val();			
+			$('#theme_demo_next').attr('href',$('#theme_demo_next').attr('href').replace('theme_demo='+pre_theme_demo, 'theme_demo='+selectedIndex));
+			$( "#merlin_select_import_demo" ).blur();
+			
+		});
     }
 
     function ChildTheme() {

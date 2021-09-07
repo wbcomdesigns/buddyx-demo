@@ -86,6 +86,8 @@ $wizard = new Merlin(
 
 		'import-header'            => esc_html__( 'Import Content', 'buddyx-demo-Importer' ),
 		'import'                   => esc_html__( 'Let\'s import content to your website, to help you get familiar with the theme.', 'buddyx-demo-Importer' ),
+		'import-demo'              => esc_html__( 'Select Import Demo', 'buddyx-demo-Importer' ),
+		'import-demo-content'      => esc_html__( 'Please select import demo and Let\'s import content to your website, to help you get familiar with the theme.', 'buddyx-demo-Importer' ),
 		'import-action-link'       => esc_html__( 'Advanced', 'buddyx-demo-Importer' ),
 
 		'ready-header'             => esc_html__( 'All done. Have fun!', 'buddyx-demo-Importer' ),
@@ -115,7 +117,9 @@ function bdi_import_files() {
 			'import_preview_image_url'   	=> 'https://www.example.com/merlin/preview_import_image1.jpg',
 			'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
 			'preview_url'                	=> 'https://www.example.com/my-demo-1',
-		),		
+			'import_plugins'               => array('elementor', 'classic-widgets', 'kirki'),
+		),
+		
 	);
 }
 add_filter( 'merlin_import_files', 'bdi_import_files' );

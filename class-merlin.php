@@ -730,7 +730,7 @@ class Merlin {
 	 * Setup steps.
 	 */
 	public function steps() {
-
+		
 		$this->steps = array(
 			'welcome' => array(
 				'name'    => esc_html__( 'Welcome', 'merlin-wp' ),
@@ -743,7 +743,14 @@ class Merlin {
 			'name' => esc_html__( 'Child', 'merlin-wp' ),
 			'view' => array( $this, 'child' ),
 		);
-
+		
+		if ( count($this->import_files ) > 1 ) {
+			$this->steps['theme-demo'] = array(
+				'name' => esc_html__( 'Theme Demo', 'merlin-wp' ),
+				'view' => array( $this, 'theme_demo' ),
+			);
+		}
+		
 		if ( $this->license_step_enabled ) {
 			$this->steps['license'] = array(
 				'name' => esc_html__( 'License', 'merlin-wp' ),
@@ -1039,7 +1046,73 @@ class Merlin {
 	<?php
 		$this->logger->debug( __( 'The child theme installation step has been displayed', 'merlin-wp' ) );
 	}
+	
+	/**
+	 * Page setup
+	 */
+	protected function theme_demo() {
+		$import_info = $this->get_import_data_info();
 
+		// Strings passed in from the config file.
+		$strings = $this->strings;
+
+		// Text strings.
+		$header    = $strings['import-demo'];
+		$paragraph = $strings['import-demo-content'];
+		$action    = $strings['import-action-link'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$import    = $strings['btn-import'];
+		
+		?>
+
+		<div class="merlin__content--transition">
+
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'content' ) ), $this->svg_allowed_html() ); ?>
+
+			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>
+
+			<h1><?php echo esc_html( $header ); ?></h1>
+
+			<p><?php echo esc_html( $paragraph ); ?></p>
+
+			<?php if ( 1 < count( $this->import_files ) ) : ?>
+
+				<div class="merlin__select-control-wrapper">
+
+					<select id="merlin_select_import_demo" class="merlin__select-control merlin-demo-import-select">
+						<?php foreach ( $this->import_files as $index => $import_file ) : ?>
+							<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+						<?php endforeach; ?>
+					</select>
+
+					<div class="merlin__select-control-help">
+						<span class="hint--top" aria-label="<?php echo esc_attr__( 'Select Demo', 'merlin-wp' ); ?>">
+							<?php echo wp_kses( $this->svg( array( 'icon' => 'downarrow' ) ), $this->svg_allowed_html() ); ?>
+						</span>
+					</div>
+				</div>
+			<?php endif; ?>
+
+		</div>		
+
+		<footer class="merlin__content__footer">
+
+			<a id="close" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--closer merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
+
+			<a id="skip" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
+
+			<a href="<?php echo esc_url( $this->step_next_link() ."&theme_demo=0" ); ?>" id="theme_demo_next" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( $next ); ?></a>
+			<?php wp_nonce_field( 'merlin' ); ?>
+		</footer>
+		
+
+		<?php
+		$this->logger->debug( __( 'The content import step has been displayed', 'merlin-wp' ) );
+	}
+	
 	/**
 	 * Theme plugins
 	 */
@@ -1067,9 +1140,15 @@ class Merlin {
 		$required_plugins = $recommended_plugins = array();
 		$count            = count( $plugins['all'] );
 		$class            = $count ? null : 'no-plugins';
+		$theme_demo 	  = (isset($_GET['theme_demo']) && $_GET['theme_demo'] != '' ) ? $_GET['theme_demo'] : 0;
+		$import_plugins	  = $this->import_files[$theme_demo]['import_plugins'];
 
 		// Split the plugins into required and recommended.
 		foreach ( $plugins['all'] as $slug => $plugin ) {
+			if ( !in_array($slug, $import_plugins) ) {
+				continue;
+			}
+			
 			if ( ! empty( $plugin['required'] ) ) {
 				$required_plugins[ $slug ] = $plugin;
 			} else {
@@ -1184,6 +1263,7 @@ class Merlin {
 		$skip      = $strings['btn-skip'];
 		$next      = $strings['btn-next'];
 		$import    = $strings['btn-import'];
+		$theme_demo 	  = (isset($_GET['theme_demo']) && $_GET['theme_demo'] != '' ) ? $_GET['theme_demo'] : 0;
 
 		$multi_import = ( 1 < count( $this->import_files ) ) ? 'is-multi-import' : null;
 		?>
@@ -1205,9 +1285,11 @@ class Merlin {
 				<div class="merlin__select-control-wrapper">
 
 					<select class="merlin__select-control js-merlin-demo-import-select">
-						<?php foreach ( $this->import_files as $index => $import_file ) : ?>
-							<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
-						<?php endforeach; ?>
+						<?php foreach ( $this->import_files as $index => $import_file ) : 
+								if ( $theme_demo == $index ){?>
+								<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+								<?php }
+						endforeach; ?>
 					</select>
 
 					<div class="merlin__select-control-help">
@@ -1950,6 +2032,8 @@ class Merlin {
 			'redux'        => false,
 			'after_import' => false,
 		);
+		
+		$selected_import_index = ( isset($_GET['theme_demo']) && $_GET['theme_demo'] != '' ) ? $_GET['theme_demo'] : $selected_import_index ;		
 
 		if ( empty( $this->import_files[ $selected_import_index ] ) ) {
 			return false;
