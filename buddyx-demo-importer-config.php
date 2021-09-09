@@ -122,7 +122,7 @@ function bdi_import_files() {
 		array(
 			'import_file_name'           	=> 'BuddyX with BB Platform',
 			'import_file_url'            	=> BDI_PLUGIN_URL . '/demos/buddyx/demo-content.xml',
-			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-page-content.xml',
+			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-bb-page-content',
 			'import_products_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-products-content.xml',
 			'import_widget_file_url'     	=> BDI_PLUGIN_URL . '/demos/buddyx/widgets.json',
 			'import_customizer_file_url' 	=> BDI_PLUGIN_URL . '/demos/buddyx/customizer.dat',
