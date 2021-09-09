@@ -77,6 +77,12 @@ function buddyx_demo_plugin_installer( $plugins ) {
 					'slug'     => 'woocommerce',
 					'required' => false,
 				);
+	$plugins[] = array(
+					'name'     => 'BuddyBoss Platform',
+					'slug'     => 'buddyboss-platform',
+					'source'	 => 'https://demos.wbcomdesigns.com/exporter/plugins/buddyboss-platform/1.7.6/buddyboss-platform.zip',
+					'required' => false,
+				);
 	
 	return $plugins;
 }

@@ -1715,72 +1715,7 @@
 	<wp:meta_key><![CDATA[_nav_menu_role]]></wp:meta_key>
 	<wp:meta_value><![CDATA[]]></wp:meta_value>
 	</wp:postmeta>
-						</item>
-				<item>
-	<title><![CDATA[Auto Login]]></title>
-	<link>https://demo.buddyxtheme.com/auto-login/</link>
-	<pubDate>Wed, 06 May 2020 15:47:32 +0000</pubDate>
-	<dc:creator><![CDATA[vapvarun]]></dc:creator>
-	<guid isPermaLink="false">https://demo.buddyxtheme.com/?p=1473</guid>
-	<description></description>
-	<content:encoded><![CDATA[]]></content:encoded>
-	<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-	<wp:post_id>1473</wp:post_id>
-	<wp:post_date><![CDATA[2020-05-06 15:47:32]]></wp:post_date>
-	<wp:post_date_gmt><![CDATA[2020-05-06 15:47:32]]></wp:post_date_gmt>
-	<wp:post_modified><![CDATA[2021-02-17 04:52:59]]></wp:post_modified>
-	<wp:post_modified_gmt><![CDATA[2021-02-17 04:52:59]]></wp:post_modified_gmt>
-	<wp:comment_status><![CDATA[closed]]></wp:comment_status>
-	<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-	<wp:post_name><![CDATA[auto-login]]></wp:post_name>
-	<wp:status><![CDATA[publish]]></wp:status>
-	<wp:post_parent>0</wp:post_parent>
-	<wp:menu_order>15</wp:menu_order>
-	<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
-	<wp:post_password><![CDATA[]]></wp:post_password>
-	<wp:is_sticky>0</wp:is_sticky>
-									<category domain="nav_menu" nicename="main-menu"><![CDATA[Main Menu]]></category>
-					<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
-	<wp:meta_value><![CDATA[custom]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
-	<wp:meta_value><![CDATA[0]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
-	<wp:meta_value><![CDATA[1473]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
-	<wp:meta_value><![CDATA[custom]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
-	<wp:meta_value><![CDATA[]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_classes]]></wp:meta_key>
-	<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_xfn]]></wp:meta_key>
-	<wp:meta_value><![CDATA[]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
-	<wp:meta_value><![CDATA[https://demo.buddyxtheme.com/?autologin_code=1t2lqbGM8dREvLPPeHatX7mPMjVCWONH]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[_nav_menu_role]]></wp:meta_key>
-	<wp:meta_value><![CDATA[out]]></wp:meta_value>
-	</wp:postmeta>
-						<wp:postmeta>
-	<wp:meta_key><![CDATA[count_items]]></wp:meta_key>
-	<wp:meta_value><![CDATA[0]]></wp:meta_value>
-	</wp:postmeta>
-						</item>
+						</item>				
 				<item>
 	<title><![CDATA[Download!]]></title>
 	<link>https://demo.buddyxtheme.com/buy-now/</link>
