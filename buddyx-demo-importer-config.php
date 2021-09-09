@@ -107,7 +107,7 @@ $wizard = new Merlin(
 function bdi_import_files() {
 	return array(
 		array(
-			'import_file_name'           	=> 'BuddyX With BuddyPress Demo',
+			'import_file_name'           	=> 'BuddyX with BuddyPress',
 			'import_file_url'            	=> BDI_PLUGIN_URL . '/demos/buddyx/demo-content.xml',
 			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-page-content.xml',
 			'import_products_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-products-content.xml',
@@ -120,7 +120,7 @@ function bdi_import_files() {
 			'import_plugins'               => array('elementor', 'classic-widgets', 'kirki', 'buddypress', 'woocommerce'),
 		),
 		array(
-			'import_file_name'           	=> 'BuddyX With BB Platform Demo',
+			'import_file_name'           	=> 'BuddyX with BB Platform',
 			'import_file_url'            	=> BDI_PLUGIN_URL . '/demos/buddyx/demo-content.xml',
 			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-page-content.xml',
 			'import_products_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-products-content.xml',
