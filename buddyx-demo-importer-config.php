@@ -122,7 +122,7 @@ function bdi_import_files() {
 		array(
 			'import_file_name'           	=> 'BuddyX with BB Platform',
 			'import_file_url'            	=> BDI_PLUGIN_URL . '/demos/buddyx/demo-content.xml',
-			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-bb-page-content',
+			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-bb-page-content.xml',
 			'import_products_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-products-content.xml',
 			'import_widget_file_url'     	=> BDI_PLUGIN_URL . '/demos/buddyx/widgets.json',
 			'import_customizer_file_url' 	=> BDI_PLUGIN_URL . '/demos/buddyx/customizer.dat',
@@ -132,7 +132,7 @@ function bdi_import_files() {
 			'preview_url'                	=> 'https://www.example.com/my-demo-1',
 			'import_plugins'               => array('elementor', 'classic-widgets', 'kirki', 'buddyboss-platform'),
 		),
-		
+
 	);
 }
 add_filter( 'merlin_import_files', 'bdi_import_files' );
@@ -147,6 +147,6 @@ function bdi_remove_admin_init() {
 		if ( did_action( 'elementor/loaded' ) ) {
 			remove_action( 'admin_init', [ \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ] );
 		}
-		
+
 	}
 }
