@@ -130,7 +130,7 @@ function bdi_import_files() {
 			'import_preview_image_url'   	=> 'https://www.example.com/merlin/preview_import_image1.jpg',
 			'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
 			'preview_url'                	=> 'https://www.example.com/my-demo-1',
-			'import_plugins'               => array('elementor', 'classic-widgets', 'kirki', 'buddyboss-platform'),
+			'import_plugins'               => array('elementor', 'classic-widgets', 'kirki', 'buddyboss-platform', 'woocommerce'),
 		),
 
 	);
