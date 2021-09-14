@@ -988,6 +988,14 @@ class WXRImporter extends \WP_Importer {
 		update_post_meta( $post_id, '_demo_data_imported', 1 );
 		if ( 'nav_menu_item' === $data['post_type'] ) {
 			$this->process_menu_item_meta( $post_id, $data, $meta );
+			
+			$_menu_item_type 	= get_post_meta($post_id, '_menu_item_type', true);
+			$_menu_item_object 	= get_post_meta($post_id, '_menu_item_object', true);
+			
+			if ( $_menu_item_object == 'custom' && $_menu_item_type == 'custom' ) {
+				$_menu_item_url = get_post_meta($post_id, '_menu_item_url', true);
+				update_post_meta( $post_id, '_menu_item_url', site_url(). $_menu_item_url );
+			}
 		}
 
 		/**
