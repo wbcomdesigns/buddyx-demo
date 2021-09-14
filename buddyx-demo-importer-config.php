@@ -93,7 +93,7 @@ $wizard = new Merlin(
 		'ready-header'             => esc_html__( 'All done. Have fun!', 'buddyx-demo-Importer' ),
 
 		/* translators: Theme Author */
-		'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.', 'buddyx-demo-Importer' ),
+		'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme by Wbcom Designs.', 'buddyx-demo-Importer' ),
 		'ready-action-link'        => esc_html__( 'Extras', 'buddyx-demo-Importer' ),
 		'ready-big-button'         => esc_html__( 'View your website', 'buddyx-demo-Importer' ),
 		'ready-link-1'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', 'buddyx-demo-Importer' ) ),
