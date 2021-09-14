@@ -730,7 +730,7 @@ class Merlin {
 	 * Setup steps.
 	 */
 	public function steps() {
-		
+
 		$this->steps = array(
 			'welcome' => array(
 				'name'    => esc_html__( 'Welcome', 'merlin-wp' ),
@@ -743,14 +743,14 @@ class Merlin {
 			'name' => esc_html__( 'Child', 'merlin-wp' ),
 			'view' => array( $this, 'child' ),
 		);
-		
+
 		if ( count($this->import_files ) > 1 ) {
 			$this->steps['theme-demo'] = array(
 				'name' => esc_html__( 'Theme Demo', 'merlin-wp' ),
 				'view' => array( $this, 'theme_demo' ),
 			);
 		}
-		
+
 		if ( $this->license_step_enabled ) {
 			$this->steps['license'] = array(
 				'name' => esc_html__( 'License', 'merlin-wp' ),
@@ -1046,7 +1046,7 @@ class Merlin {
 	<?php
 		$this->logger->debug( __( 'The child theme installation step has been displayed', 'merlin-wp' ) );
 	}
-	
+
 	/**
 	 * Page setup
 	 */
@@ -1063,7 +1063,7 @@ class Merlin {
 		$skip      = $strings['btn-skip'];
 		$next      = $strings['btn-next'];
 		$import    = $strings['btn-import'];
-		
+
 		?>
 
 		<div class="merlin__content--transition">
@@ -1096,7 +1096,7 @@ class Merlin {
 				</div>
 			<?php endif; ?>
 
-		</div>		
+		</div>
 
 		<footer class="merlin__content__footer">
 
@@ -1107,12 +1107,12 @@ class Merlin {
 			<a href="<?php echo esc_url( $this->step_next_link() ."&theme_demo=0" ); ?>" id="theme_demo_next" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( $next ); ?></a>
 			<?php wp_nonce_field( 'merlin' ); ?>
 		</footer>
-		
+
 
 		<?php
 		$this->logger->debug( __( 'The content import step has been displayed', 'merlin-wp' ) );
 	}
-	
+
 	/**
 	 * Theme plugins
 	 */
@@ -1148,7 +1148,7 @@ class Merlin {
 			if ( !in_array($slug, $import_plugins) ) {
 				continue;
 			}
-			
+
 			if ( ! empty( $plugin['required'] ) ) {
 				$required_plugins[ $slug ] = $plugin;
 			} else {
@@ -1285,7 +1285,7 @@ class Merlin {
 				<div class="merlin__select-control-wrapper">
 
 					<select class="merlin__select-control js-merlin-demo-import-select">
-						<?php foreach ( $this->import_files as $index => $import_file ) : 
+						<?php foreach ( $this->import_files as $index => $import_file ) :
 								if ( $theme_demo == $index ){?>
 								<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
 								<?php }
@@ -1708,7 +1708,7 @@ class Merlin {
 			 * Failure to use the proper tag will result in a CSS file needlessly being loaded twice.
 			 * This will usually not affect the site appearance, but it's inefficient and extends your page's loading time.
 			 *
-			 * @link https://codex.wordpress.org/Child_Themes
+			 * @link https://developer.wordpress.org/themes/advanced-topics/child-themes/
 			 */
 			function {$slug_no_hyphens}_child_enqueue_styles() {
 			    wp_enqueue_style( '{$slug}-style' , get_template_directory_uri() . '/style.css' );
@@ -2032,8 +2032,8 @@ class Merlin {
 			'redux'        => false,
 			'after_import' => false,
 		);
-		
-		$selected_import_index = ( isset($_GET['theme_demo']) && $_GET['theme_demo'] != '' ) ? $_GET['theme_demo'] : $selected_import_index ;		
+
+		$selected_import_index = ( isset($_GET['theme_demo']) && $_GET['theme_demo'] != '' ) ? $_GET['theme_demo'] : $selected_import_index ;
 
 		if ( empty( $this->import_files[ $selected_import_index ] ) ) {
 			return false;
