@@ -91,3 +91,15 @@ function buddyx_demo_plugin_installer( $plugins ) {
 
 	return $plugins;
 }
+
+/*
+ * Added Groups, Friends and Messages components activate when BuddyPress Plugin activate.
+ */
+add_action( 'bp_new_install_default_components', 'buddyx_demo_bp_default_components', 99, 1 );
+function buddyx_demo_bp_default_components( $components  ) {
+	$components['groups'] 	= 1;
+	$components['friends'] 	= 1;
+	$components['messages'] = 1;		
+	return $components;
+		
+}
