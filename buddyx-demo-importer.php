@@ -65,7 +65,7 @@ function bdi_activated_plugin_redirect( $plugin ) {
 add_filter( 'buddyx_plugin_install', 'buddyx_demo_plugin_installer' );
 
 function buddyx_demo_plugin_installer( $plugins ) {
-	if ( isset($_GET['page']) && $_GET['page'] == 'buddyx-sample-demo-import') {
+	if ( ( isset($_GET['page']) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' ) ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX == true ) )  {
 		$plugins[] = array(
 			'name'     => 'BuddyPress',
 			'slug'     => 'buddypress',
