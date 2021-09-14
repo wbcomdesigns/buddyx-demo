@@ -65,30 +65,30 @@ function bdi_activated_plugin_redirect( $plugin ) {
 add_filter( 'buddyx_plugin_install', 'buddyx_demo_plugin_installer' );
 
 function buddyx_demo_plugin_installer( $plugins ) {
-
-	$plugins[] = array(
-		'name'     => 'BuddyPress',
-		'slug'     => 'buddypress',
-		'required' => false,
-	);
-	$plugins[] = array(
-		'name'     => 'WooCommerce',
-		'slug'     => 'woocommerce',
-		'required' => false,
-	);
-	$plugins[] = array(
-		'name'     => 'BuddyBoss Platform',
-		'slug'     => 'buddyboss-platform',
-		'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/buddyboss-platform/1.7.6/buddyboss-platform.zip',
-		'required' => false,
-	);
-	$plugins[] = array(
-		'name'     => 'Wbcom Essential',
-		'slug'     => 'wbcom-essential',
-		'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.4.1/wbcom-essential.zip',
-		'required' => false,
-	);
-
+	if ( isset($_GET['page']) && $_GET['page'] == 'buddyx-sample-demo-import') {
+		$plugins[] = array(
+			'name'     => 'BuddyPress',
+			'slug'     => 'buddypress',
+			'required' => false,
+		);
+		$plugins[] = array(
+			'name'     => 'WooCommerce',
+			'slug'     => 'woocommerce',
+			'required' => false,
+		);
+		$plugins[] = array(
+			'name'     => 'BuddyBoss Platform',
+			'slug'     => 'buddyboss-platform',
+			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/buddyboss-platform/1.7.6/buddyboss-platform.zip',
+			'required' => false,
+		);
+		$plugins[] = array(
+			'name'     => 'Wbcom Essential',
+			'slug'     => 'wbcom-essential',
+			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.4.1/wbcom-essential.zip',
+			'required' => false,
+		);
+	}
 	return $plugins;
 }
 
