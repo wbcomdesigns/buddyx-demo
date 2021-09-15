@@ -183,7 +183,7 @@ class Merlin_Logger {
 	 *
 	 * @return void
 	 */
-	private function __clone() {}
+	public function __clone() {}
 
 
 	/**
@@ -191,5 +191,5 @@ class Merlin_Logger {
 	 *
 	 * @return void
 	 */
-	private function __wakeup() {}
+	public function __wakeup() {}
 }
