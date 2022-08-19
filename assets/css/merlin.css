@@ -24,6 +24,10 @@
 	justify-content: center;
 }
 
+.merlin__body .xe-notice {
+	display: none;
+}
+
 h1 {
 	border: 0;
 	color: #444;
