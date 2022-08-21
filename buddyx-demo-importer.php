@@ -3,7 +3,7 @@
  * Plugin Name: BuddyX Demo Importer
  * Plugin URI: https://wbcomdesigns.com/
  * Description: BuddyX Theme Demo Importer
- * Version: 2.0.0
+ * Version: 1.1.0
  * Author: Wbcom Designs
  * Author URI: https://wbcomdesigns.com/
  * Requires at least: 4.0
@@ -65,47 +65,29 @@ function bdi_activated_plugin_redirect( $plugin ) {
 add_filter( 'buddyx_plugin_install', 'buddyx_demo_plugin_installer' );
 
 function buddyx_demo_plugin_installer( $plugins ) {
-	if ( ( isset($_GET['page']) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' ) ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX == true ) )  {
-		$plugins[] = array(
-			'name'     => 'BuddyPress',
-			'slug'     => 'buddypress',
-			'required' => false,
-		);
-		$plugins[] = array(
-			'name'     => 'WooCommerce',
-			'slug'     => 'woocommerce',
-			'required' => false,
-		);
-		$plugins[] = array(
-			'name'     => 'BuddyBoss Platform',
-			'slug'     => 'buddyboss-platform',
-			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/buddyboss-platform/1.7.6/buddyboss-platform.zip',
-			'required' => false,
-		);
-		$plugins[] = array(
-			'name'     => 'Wbcom Essential',
-			'slug'     => 'wbcom-essential',
-			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.4.2/wbcom-essential.zip',
-			'required' => false,
-		);
-	}
+
+	$plugins[] = array(
+		'name'     => 'BuddyPress',
+		'slug'     => 'buddypress',
+		'required' => false,
+	);
+	$plugins[] = array(
+		'name'     => 'WooCommerce',
+		'slug'     => 'woocommerce',
+		'required' => false,
+	);
+	$plugins[] = array(
+		'name'     => 'BuddyBoss Platform',
+		'slug'     => 'buddyboss-platform',
+		'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/buddyboss-platform/1.7.6/buddyboss-platform.zip',
+		'required' => false,
+	);
+	$plugins[] = array(
+		'name'     => 'Wbcom Essential',
+		'slug'     => 'wbcom-essential',
+		'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.4.2/wbcom-essential.zip',
+		'required' => false,
+	);
+
 	return $plugins;
 }
-
-/*
- * Added Groups, Friends and Messages components activate when BuddyPress Plugin activate.
- */
-add_action( 'bp_new_install_default_components', 'buddyx_demo_bp_default_components', 99, 1 );
-function buddyx_demo_bp_default_components( $components  ) {
-	$components['groups'] 	= 1;
-	$components['friends'] 	= 1;
-	$components['messages'] = 1;
-	return $components;
-}
-
-require plugin_dir_path( __FILE__ ) . 'plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://demos.wbcomdesigns.com/exporter/free-plugins/buddyx-demo-importer.json',
-	__FILE__, // Full path to the main plugin file or functions.php.
-	'buddyx-demo-importer'
-);
