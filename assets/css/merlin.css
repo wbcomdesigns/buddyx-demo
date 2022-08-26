@@ -24,8 +24,19 @@
 	justify-content: center;
 }
 
-.merlin__body .xe-notice {
-	display: none;
+.merlin__body .xe-notice,
+.merlin__body .lp-overlay {
+    display: none;
+}
+
+.merlin_plugin_error.error {
+    -webkit-animation: errorShake 0.4s 1 linear;
+    animation: errorShake 0.4s 1 linear;
+    background-color: #d54e21;
+    color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 7px;
 }
 
 h1 {
