@@ -36,12 +36,9 @@ if ( ! function_exists( 'bdi_file_includes' ) ) {
 	}
 }
 
-
 /*
  * redirect Theme Setup Wizard setting page after plugin activated
  */
-
-
 add_action( 'activated_plugin', 'bdi_activated_plugin_redirect' );
 
 function bdi_activated_plugin_redirect( $plugin ) {
@@ -65,7 +62,7 @@ function bdi_activated_plugin_redirect( $plugin ) {
 add_filter( 'buddyx_plugin_install', 'buddyx_demo_plugin_installer' );
 
 function buddyx_demo_plugin_installer( $plugins ) {
-	if ( ( isset($_GET['page']) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' ) ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX == true ) )  {
+	if ( ( isset( $_GET['page'] ) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' ) ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX == true ) ) {
 		$plugins[] = array(
 			'name'     => 'BuddyPress',
 			'slug'     => 'buddypress',
@@ -96,9 +93,9 @@ function buddyx_demo_plugin_installer( $plugins ) {
  * Added Groups, Friends and Messages components activate when BuddyPress Plugin activate.
  */
 add_action( 'bp_new_install_default_components', 'buddyx_demo_bp_default_components', 99, 1 );
-function buddyx_demo_bp_default_components( $components  ) {
-	$components['groups'] 	= 1;
-	$components['friends'] 	= 1;
+function buddyx_demo_bp_default_components( $components ) {
+	$components['groups']   = 1;
+	$components['friends']  = 1;
 	$components['messages'] = 1;
 	return $components;
 }

@@ -17,9 +17,8 @@ if ( ! class_exists( 'Merlin' ) ) {
 /**
  * Set directory locations, text strings, and settings.
  */
-$wizard = new Merlin(
-
-	$config = array(
+$wizard      = new Merlin(
+	$config  = array(
 		'directory'            => '', // Location / directory where Merlin WP is placed in your theme.
 		'merlin_url'           => 'buddyx-sample-demo-import', // The wp-admin page slug where Merlin WP loads.
 		'parent_slug'          => 'themes.php', // The wp-admin parent page slug for the admin menu item.
@@ -32,7 +31,7 @@ $wizard = new Merlin(
 		'edd_remote_api_url'   => '', // EDD_Theme_Updater_Admin remote_api_url.
 		'edd_item_name'        => '', // EDD_Theme_Updater_Admin item_name.
 		'edd_theme_slug'       => '', // EDD_Theme_Updater_Admin item_slug.
-		'ready_big_button_url' => site_url(''), // Link for the big button on the ready step.
+		'ready_big_button_url' => site_url( '' ), // Link for the big button on the ready step.
 	),
 	$strings = array(
 		'admin-menu'               => esc_html__( 'Theme Setup', 'buddyx-demo-Importer' ),
@@ -107,30 +106,30 @@ $wizard = new Merlin(
 function bdi_import_files() {
 	return array(
 		array(
-			'import_file_name'           	=> 'BuddyX with BuddyPress',
-			'import_file_url'            	=> BDI_PLUGIN_URL . '/demos/buddyx/demo-content.xml',
-			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-page-content.xml',
-			'import_products_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-products-content.xml',
-			'import_widget_file_url'     	=> BDI_PLUGIN_URL . '/demos/buddyx/widgets.json',
-			'import_customizer_file_url' 	=> BDI_PLUGIN_URL . '/demos/buddyx/customizer.dat',
-			'import_redux'               	=> array(),
-			'import_preview_image_url'   	=> 'https://www.example.com/merlin/preview_import_image1.jpg',
-			'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
-			'preview_url'                	=> 'https://www.example.com/my-demo-1',
-			'import_plugins'               => array( 'elementor', 'classic-widgets', 'kirki', 'buddypress', 'woocommerce', 'wbcom-essential' ),
+			'import_file_name'           => 'BuddyX with BuddyPress',
+			'import_file_url'            => BDI_PLUGIN_URL . '/demos/buddyx/buddypress/demo-content.xml',
+			'import_page_file_url'       => BDI_PLUGIN_URL . '/demos/buddyx/buddypress/demo-page-content.xml',
+			'import_products_file_url'   => BDI_PLUGIN_URL . '/demos/buddyx/buddypress/demo-products-content.xml',
+			'import_widget_file_url'     => BDI_PLUGIN_URL . '/demos/buddyx/buddypress/widgets.json',
+			'import_customizer_file_url' => BDI_PLUGIN_URL . '/demos/buddyx/buddypress/customizer.dat',
+			'import_redux'               => array(),
+			'import_preview_image_url'   => 'https://www.example.com/merlin/preview_import_image1.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+			'preview_url'                => 'https://www.example.com/my-demo-1',
+			'import_plugins'             => array( 'elementor', 'classic-widgets', 'kirki', 'buddypress', 'woocommerce', 'wbcom-essential' ),
 		),
 		array(
-			'import_file_name'           	=> 'BuddyX with BB Platform',
-			'import_file_url'            	=> BDI_PLUGIN_URL . '/demos/buddyx/demo-content.xml',
-			'import_page_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-bb-page-content.xml',
-			'import_products_file_url'          => BDI_PLUGIN_URL . '/demos/buddyx/demo-products-content.xml',
-			'import_widget_file_url'     	=> BDI_PLUGIN_URL . '/demos/buddyx/widgets.json',
-			'import_customizer_file_url' 	=> BDI_PLUGIN_URL . '/demos/buddyx/customizer.dat',
-			'import_redux'               	=> array(),
-			'import_preview_image_url'   	=> 'https://www.example.com/merlin/preview_import_image1.jpg',
-			'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
-			'preview_url'                	=> 'https://www.example.com/my-demo-1',
-			'import_plugins'               => array( 'elementor', 'classic-widgets', 'kirki', 'buddyboss-platform', 'woocommerce', 'wbcom-essential' ),
+			'import_file_name'           => 'BuddyX with BB Platform',
+			'import_file_url'            => BDI_PLUGIN_URL . '/demos/buddyx/bb-platform/demo-content.xml',
+			'import_page_file_url'       => BDI_PLUGIN_URL . '/demos/buddyx/bb-platform/demo-bb-page-content.xml',
+			'import_products_file_url'   => BDI_PLUGIN_URL . '/demos/buddyx/bb-platform/demo-products-content.xml',
+			'import_widget_file_url'     => BDI_PLUGIN_URL . '/demos/buddyx/bb-platform/widgets.json',
+			'import_customizer_file_url' => BDI_PLUGIN_URL . '/demos/buddyx/bb-platform/customizer.dat',
+			'import_redux'               => array(),
+			'import_preview_image_url'   => 'https://www.example.com/merlin/preview_import_image1.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+			'preview_url'                => 'https://www.example.com/my-demo-1',
+			'import_plugins'             => array( 'elementor', 'classic-widgets', 'kirki', 'buddyboss-platform', 'woocommerce', 'wbcom-essential' ),
 		),
 
 	);
@@ -140,13 +139,17 @@ add_filter( 'merlin_import_files', 'bdi_import_files' );
 /* remove Admin init function on Theme Setup wizard start */
 add_action( 'admin_init', 'bdi_remove_admin_init', 0 );
 function bdi_remove_admin_init() {
-	if ( isset($_GET['page']) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' )) {
-		remove_action('admin_init', 'is_admin_init');
-		add_filter( 'woocommerce_enable_setup_wizard', function() { return false; } );
+	if ( isset( $_GET['page'] ) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' ) ) {
+		remove_action( 'admin_init', 'is_admin_init' );
+		add_filter(
+			'woocommerce_enable_setup_wizard',
+			function() {
+				return false;
+			}
+		);
 		update_option( 'wpforms_activation_redirect', true );
 		if ( did_action( 'elementor/loaded' ) ) {
-			remove_action( 'admin_init', [ \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ] );
+			remove_action( 'admin_init', array( \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ) );
 		}
-
 	}
 }
