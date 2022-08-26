@@ -105,6 +105,11 @@ function buddyx_demo_plugin_installer( $plugins ) {
 			'slug'     => 'tutor',
 			'required' => false,
 		);
+		$plugins[] = array(
+			'name'     => 'Dokan',
+			'slug'     => 'dokan-lite',
+			'required' => false,
+		);
 	}
 	return $plugins;
 }
