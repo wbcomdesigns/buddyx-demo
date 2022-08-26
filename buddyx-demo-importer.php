@@ -85,6 +85,16 @@ function buddyx_demo_plugin_installer( $plugins ) {
 			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.5.7/wbcom-essential.zip',
 			'required' => false,
 		);
+		$plugins[] = array(
+			'name'     => 'LifterLMS',
+			'slug'     => 'lifterlms',
+			'required' => false,
+		);
+		$plugins[] = array(
+			'name'     => 'ElementsKit Lite',
+			'slug'     => 'elementskit-lite',
+			'required' => false,
+		);
 	}
 	return $plugins;
 }
