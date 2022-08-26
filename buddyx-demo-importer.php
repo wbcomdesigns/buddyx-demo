@@ -110,6 +110,11 @@ function buddyx_demo_plugin_installer( $plugins ) {
 			'slug'     => 'dokan-lite',
 			'required' => false,
 		);
+		$plugins[] = array(
+			'name'     => 'The Events Calendar',
+			'slug'     => 'the-events-calendar',
+			'required' => false,
+		);
 	}
 	return $plugins;
 }

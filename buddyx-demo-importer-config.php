@@ -190,6 +190,17 @@ function bdi_import_files() {
 			'preview_url'                => 'https://www.example.com/my-demo-1',
 			'import_plugins'             => array( 'elementor', 'classic-widgets', 'kirki', 'dokan-lite', 'woocommerce' ),
 		),
+		array(
+			'import_file_name'           => 'BuddyX with Charity',
+			'import_file_url'            => BDI_PLUGIN_URL . '/demos/buddyx/charity/demo-content.xml',
+			'import_widget_file_url'     => BDI_PLUGIN_URL . '/demos/buddyx/charity/widgets.json',
+			'import_customizer_file_url' => BDI_PLUGIN_URL . '/demos/buddyx/charity/customizer.dat',
+			'import_redux'               => array(),
+			'import_preview_image_url'   => 'https://www.example.com/merlin/preview_import_image1.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+			'preview_url'                => 'https://www.example.com/my-demo-1',
+			'import_plugins'             => array( 'elementor', 'classic-widgets', 'kirki', 'the-events-calendar', 'buddypress', 'woocommerce' ),
+		),
 	);
 }
 add_filter( 'merlin_import_files', 'bdi_import_files' );
@@ -208,6 +219,9 @@ function bdi_remove_admin_init() {
 		update_option( 'wpforms_activation_redirect', true );
 		if ( did_action( 'elementor/loaded' ) ) {
 			remove_action( 'admin_init', array( \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ) );
+		}
+		if ( class_exists( 'Tribe__Events__Main' ) ) {
+			remove_action( '_admin_menu', 'tribe_remove_activation_page', 20 );
 		}
 	}
 }
