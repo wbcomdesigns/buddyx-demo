@@ -168,7 +168,17 @@ function bdi_import_files() {
 			'preview_url'                => 'https://www.example.com/my-demo-1',
 			'import_plugins'             => array( 'elementor', 'classic-widgets', 'kirki', 'learnpress', 'wbcom-essential' ),
 		),
-
+		array(
+			'import_file_name'           => 'BuddyX with TutorLMS',
+			'import_file_url'            => BDI_PLUGIN_URL . '/demos/buddyx/tutorlms/demo-content.xml',
+			'import_widget_file_url'     => BDI_PLUGIN_URL . '/demos/buddyx/tutorlms/widgets.json',
+			'import_customizer_file_url' => BDI_PLUGIN_URL . '/demos/buddyx/tutorlms/customizer.dat',
+			'import_redux'               => array(),
+			'import_preview_image_url'   => 'https://www.example.com/merlin/preview_import_image1.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+			'preview_url'                => 'https://www.example.com/my-demo-1',
+			'import_plugins'             => array( 'elementor', 'classic-widgets', 'kirki', 'tutor', 'wbcom-essential' ),
+		),
 	);
 }
 add_filter( 'merlin_import_files', 'bdi_import_files' );
