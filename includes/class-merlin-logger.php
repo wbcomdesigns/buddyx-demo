@@ -185,11 +185,4 @@ class Merlin_Logger {
 	 */
 	public function __clone() {}
 
-
-	/**
-	 * Private unserialize method to prevent unserializing of the *Singleton* instance.
-	 *
-	 * @return void
-	 */
-	public function __wakeup() {}
 }
