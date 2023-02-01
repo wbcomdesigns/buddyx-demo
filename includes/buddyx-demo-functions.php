@@ -323,3 +323,30 @@ function buddyx_bp_delete_import_records() {
 	
 	bp_delete_option( 'buddyx_bp_imported_user_xprofile_ids' );
 }
+
+/* 
+ * Upload elementor background image in to wp and update image url and id
+ */
+add_action( 'wxr_importer.processed.post', 'update_elementor_background_image', 10, 5);
+function update_elementor_background_image( $post_id, $data, $meta, $comments, $terms ) {
+	$_elementor_data = get_post_meta( $post_id, '_elementor_data', true);
+			
+	if ( $_elementor_data != '' ) {
+		$_elementor_data = json_decode($_elementor_data, true);				
+		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+		require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+		require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+		foreach($_elementor_data as $key=>$data) {
+			if (isset($data['settings']['background_image']['url']) && $data['settings']['background_image']['url'] != '' ) {
+				$url     = $data['settings']['background_image']['url'];
+				$desc    = "";
+				$image = media_sideload_image( $url, $post_id, $desc, 'src' );
+				$image_id = attachment_url_to_postid( $image );
+				$_elementor_data[$key]['settings']['background_image']['url'] = $image;
+				$_elementor_data[$key]['settings']['background_image']['id'] = $image_id;
+			}
+			
+		}
+		update_post_meta( $post_id, '_elementor_data', json_encode($_elementor_data));
+	}
+}
