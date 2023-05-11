@@ -76,13 +76,13 @@ function buddyx_demo_plugin_installer( $plugins ) {
 		$plugins[] = array(
 			'name'     => 'BuddyBoss Platform',
 			'slug'     => 'buddyboss-platform',
-			'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.0.8/buddyboss-platform-plugin.zip',
+			'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.3.3/buddyboss-platform-plugin.zip',
 			'required' => false,
 		);
 		$plugins[] = array(
 			'name'     => 'Wbcom Essential',
 			'slug'     => 'wbcom-essential',
-			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.5.7/wbcom-essential.zip',
+			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.6.0/wbcom-essential.zip',
 			'required' => false,
 		);
 		$plugins[] = array(
