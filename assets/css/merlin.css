@@ -24,9 +24,21 @@
 	justify-content: center;
 }
 
-.merlin__body .xe-notice,
-.merlin__body .lp-overlay {
+.merlin__body {
+    visibility: hidden;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+}
+
+.merlin__body>* {
     display: none;
+}
+
+body.merlin__body .merlin__wrapper {
+    visibility: visible;
+    display: block;
 }
 
 .merlin_plugin_error.error {
