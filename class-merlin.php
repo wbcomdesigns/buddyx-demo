@@ -24,6 +24,27 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Merlin {
 	/**
+	 * URL for the ready big button.
+	 *
+	 * @var string
+	 */
+	private $ready_big_button_url;
+
+	/**
+	 * Slug for the Merlin instance.
+	 *
+	 * @var string
+	 */
+	private $slug;
+
+	/**
+	 * Hook suffix for admin pages.
+	 *
+	 * @var string
+	 */
+	private $hook_suffix;
+
+	/**
 	 * Current theme.
 	 *
 	 * @var object WP_Theme
