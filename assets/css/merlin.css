@@ -1481,6 +1481,10 @@ body.loaded .merlin__content--welcome {
 	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 }
 
+.merlin__button--loading:focus {
+	box-shadow: none;
+}
+
 .merlin__button--loading .merlin__button--loading__text {
 	opacity: 0;
 
