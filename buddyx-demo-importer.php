@@ -92,13 +92,13 @@ function buddyx_demo_plugin_installer( $plugins ) {
 		$plugins[] = array(
 			'name'     => 'BuddyBoss Platform',
 			'slug'     => 'buddyboss-platform',
-			'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.6.80/buddyboss-platform-plugin.zip',
+			'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.5.00/buddyboss-platform-plugin.zip',
 			'required' => false,
 		);
 		$plugins[] = array(
 			'name'     => 'Wbcom Essential',
 			'slug'     => 'wbcom-essential',
-			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.7.3/wbcom-essential.zip',
+			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.7.1/wbcom-essential.zip',
 			'required' => false,
 		);
 		$plugins[] = array(
@@ -129,8 +129,11 @@ function buddyx_demo_plugin_installer( $plugins ) {
 		$plugins[] = array(
 			'name'     => 'The Events Calendar',
 			'slug'     => 'the-events-calendar',
-			
-
+			'required' => false,
+		);
+	}
+	return $plugins;
+}
 
 /**
  * Activate Groups, Friends, and Messages components when BuddyPress is activated.
