@@ -33,21 +33,21 @@ define( 'BDI_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 			require_once BDI_PLUGIN_PATH . 'vendor/autoload.php';
 		}
 
-		if ( file_exists( BDI_PLUGIN_PATH . 'class-merlin.php' ) ) {
-			require_once BDI_PLUGIN_PATH . 'class-merlin.php';
-		}
-
 		if ( file_exists( BDI_PLUGIN_PATH . 'includes/buddyx-demo-functions.php' ) ) {
 			require_once BDI_PLUGIN_PATH . 'includes/buddyx-demo-functions.php';
 		}
 
-		if ( file_exists( BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php' ) ) {
-			require_once BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php';
-		}
+		
 	}
 }
 
+if ( !class_exists( 'OCDI_Plugin' ) && file_exists( BDI_PLUGIN_PATH . 'includes/one-click-demo-import/one-click-demo-import.php' ) ) {
+	require_once BDI_PLUGIN_PATH . 'includes/one-click-demo-import/one-click-demo-import.php';
+}
 
+if ( file_exists( BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php' ) ) {				
+	require_once BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php';			
+}
 /*
  * redirect Theme Setup Wizard setting page after plugin activated
  */
@@ -60,12 +60,12 @@ function bdi_activated_plugin_redirect( $plugin ) {
 		if ( isset( $_GET['page'] ) && sanitize_text_field( $_GET['page'] ) === 'tgmpa-install-plugins' ) {
 			?>
 			<script>
-				window.location = "<?php echo esc_url( admin_url( 'themes.php?page=buddyx-sample-demo-import' ) ); ?>";
+				window.location = "<?php echo esc_url( admin_url( 'themes.php?page=one-click-demo-import' ) ); ?>";
 			</script>
 			<?php
 			wp_die();
 		} else {
-			wp_redirect( esc_url( admin_url( 'themes.php?page=buddyx-sample-demo-import' ) ) );
+			wp_redirect( esc_url( admin_url( 'themes.php?page=one-click-demo-import' ) ) );
 			exit;
 		}
 	}

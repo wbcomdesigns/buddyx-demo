@@ -10,99 +10,6 @@
  * @license   Licensed GPLv3 for Open Source Use
  */
 
-if ( ! class_exists( 'Merlin' ) ) {
-	return;
-}
-
-/**
- * Set directory locations, text strings, and settings.
- */
-$wizard      = new Merlin(
-	$config  = array(
-		'directory'            => '', // Location / directory where Merlin WP is placed in your theme.
-		'merlin_url'           => 'buddyx-sample-demo-import', // The wp-admin page slug where Merlin WP loads.
-		'parent_slug'          => 'themes.php', // The wp-admin parent page slug for the admin menu item.
-		'capability'           => 'manage_options', // The capability required for this menu to be displayed to the user.
-		'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes/', // URL for the 'child-action-link'.
-		'dev_mode'             => true, // Enable development mode for testing.
-		'license_step'         => false, // EDD license activation step.
-		'license_required'     => false, // Require the license activation step.
-		'license_help_url'     => '', // URL for the 'license-tooltip'.
-		'edd_remote_api_url'   => '', // EDD_Theme_Updater_Admin remote_api_url.
-		'edd_item_name'        => '', // EDD_Theme_Updater_Admin item_name.
-		'edd_theme_slug'       => '', // EDD_Theme_Updater_Admin item_slug.
-		'ready_big_button_url' => site_url( '' ), // Link for the big button on the ready step.
-	),
-	$strings = array(
-		'admin-menu'               => esc_html__( 'Theme Setup', 'buddyx-demo-Importer' ),
-
-		/* translators: 1: Title Tag 2: Theme Name 3: Closing Title Tag */
-		'title%s%s%s%s'            => esc_html__( '%1$s%2$s Themes &lsaquo; Theme Setup: %3$s%4$s', 'buddyx-demo-Importer' ),
-		'return-to-dashboard'      => esc_html__( 'Return to the dashboard', 'buddyx-demo-Importer' ),
-		'ignore'                   => esc_html__( 'Disable this wizard', 'buddyx-demo-Importer' ),
-
-		'btn-skip'                 => esc_html__( 'Skip', 'buddyx-demo-Importer' ),
-		'btn-next'                 => esc_html__( 'Next', 'buddyx-demo-Importer' ),
-		'btn-start'                => esc_html__( 'Start', 'buddyx-demo-Importer' ),
-		'btn-no'                   => esc_html__( 'Cancel', 'buddyx-demo-Importer' ),
-		'btn-plugins-install'      => esc_html__( 'Install', 'buddyx-demo-Importer' ),
-		'btn-child-install'        => esc_html__( 'Install', 'buddyx-demo-Importer' ),
-		'btn-content-install'      => esc_html__( 'Install', 'buddyx-demo-Importer' ),
-		'btn-import'               => esc_html__( 'Import', 'buddyx-demo-Importer' ),
-		'btn-license-activate'     => esc_html__( 'Activate', 'buddyx-demo-Importer' ),
-		'btn-license-skip'         => esc_html__( 'Later', 'buddyx-demo-Importer' ),
-
-		/* translators: Theme Name */
-		'license-header%s'         => esc_html__( 'Activate %s', 'buddyx-demo-Importer' ),
-		/* translators: Theme Name */
-		'license-header-success%s' => esc_html__( '%s is Activated', 'buddyx-demo-Importer' ),
-		/* translators: Theme Name */
-		'license%s'                => esc_html__( 'Enter your license key to enable remote updates and theme support.', 'buddyx-demo-Importer' ),
-		'license-label'            => esc_html__( 'License key', 'buddyx-demo-Importer' ),
-		'license-success%s'        => esc_html__( 'The theme is already registered, so you can go to the next step!', 'buddyx-demo-Importer' ),
-		'license-json-success%s'   => esc_html__( 'Your theme is activated! Remote updates and theme support are enabled.', 'buddyx-demo-Importer' ),
-		'license-tooltip'          => esc_html__( 'Need help?', 'buddyx-demo-Importer' ),
-
-		/* translators: Theme Name */
-		'welcome-header%s'         => esc_html__( 'Welcome to %s', 'buddyx-demo-Importer' ),
-		'welcome-header-success%s' => esc_html__( 'Hi. Welcome back', 'buddyx-demo-Importer' ),
-		'welcome%s'                => esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.', 'buddyx-demo-Importer' ),
-		'welcome-success%s'        => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.', 'buddyx-demo-Importer' ),
-
-		'child-header'             => esc_html__( 'Install Child Theme', 'buddyx-demo-Importer' ),
-		'child-header-success'     => esc_html__( 'You\'re good to go!', 'buddyx-demo-Importer' ),
-		'child'                    => esc_html__( 'Let\'s build & activate a child theme so you may easily make theme changes.', 'buddyx-demo-Importer' ),
-		'child-success%s'          => esc_html__( 'Your child theme has already been installed and is now activated, if it wasn\'t already.', 'buddyx-demo-Importer' ),
-		'child-action-link'        => esc_html__( 'Learn about child themes', 'buddyx-demo-Importer' ),
-		'child-json-success%s'     => esc_html__( 'Awesome. Your child theme has already been installed and is now activated.', 'buddyx-demo-Importer' ),
-		'child-json-already%s'     => esc_html__( 'Awesome. Your child theme has been created and is now activated.', 'buddyx-demo-Importer' ),
-
-		'plugins-header'           => esc_html__( 'Install Plugins', 'buddyx-demo-Importer' ),
-		'plugins-header-success'   => esc_html__( 'You\'re up to speed!', 'buddyx-demo-Importer' ),
-		'plugins'                  => esc_html__( 'Let\'s install some essential WordPress plugins to get your site up to speed.', 'buddyx-demo-Importer' ),
-		'plugins-success%s'        => esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.', 'buddyx-demo-Importer' ),
-		'plugins-action-link'      => esc_html__( 'Advanced', 'buddyx-demo-Importer' ),
-
-		'import-header'            => esc_html__( 'Import Content', 'buddyx-demo-Importer' ),
-		'import'                   => esc_html__( 'Let\'s import content to your website, to help you get familiar with the theme.', 'buddyx-demo-Importer' ),
-		'import-demo'              => esc_html__( 'Select Import Demo', 'buddyx-demo-Importer' ),
-		'import-demo-content'      => esc_html__( 'Please select import demo and Let\'s import content to your website, to help you get familiar with the theme.', 'buddyx-demo-Importer' ),
-		'import-action-link'       => esc_html__( 'Advanced', 'buddyx-demo-Importer' ),
-
-		'ready-header'             => esc_html__( 'All done. Have fun!', 'buddyx-demo-Importer' ),
-
-		/* translators: Theme Author */
-		'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme by Wbcom Designs.', 'buddyx-demo-Importer' ),
-		'ready-action-link'        => esc_html__( 'Extras', 'buddyx-demo-Importer' ),
-		'ready-big-button'         => esc_html__( 'View your website', 'buddyx-demo-Importer' ),
-		'ready-link-1'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', 'buddyx-demo-Importer' ) ),
-		'ready-link-2'             => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wbcomdesigns.com/support/', esc_html__( 'Get Theme Support', 'buddyx-demo-Importer' ) ),
-		'ready-link-3'             => sprintf( '<a href="%1$s">%2$s</a>', admin_url( 'customize.php' ), esc_html__( 'Start Customizing', 'buddyx-demo-Importer' ) ),
-	)
-);
-
-
-
 function bdi_import_files() {
 	return array(
 		array(
@@ -208,7 +115,14 @@ add_filter( 'merlin_import_files', 'bdi_import_files' );
 /* remove Admin init function on Theme Setup wizard start */
 add_action( 'admin_init', 'bdi_remove_admin_init', 0 );
 function bdi_remove_admin_init() {
-	if ( isset( $_GET['page'] ) && ( $_GET['page'] == 'buddyx-sample-demo-import' || $_GET['page'] == 'tgmpa-install-plugins' ) ) {
+	if ( isset( $_GET['page'] ) 
+		&& ( 
+			$_GET['page'] == 'buddyx-sample-demo-import' 
+			|| $_GET['page'] == 'tgmpa-install-plugins' 
+			|| $_GET['page'] == 'one-click-demo-import' 
+			) 
+	
+		) {
 		remove_action( 'admin_init', 'is_admin_init' );
 		add_filter(
 			'woocommerce_enable_setup_wizard',
@@ -224,4 +138,381 @@ function bdi_remove_admin_init() {
 			remove_action( '_admin_menu', 'tribe_remove_activation_page', 20 );
 		}
 	}
+}
+/*
+ *One Click Demo Import
+ */
+function bdi_ocdi_import_files( ) {	
+  return [
+    [
+		'import_file_name'             => 'BuddyX with BuddyPress',
+		'categories'                   => [],		
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/buddypress/demo-content.xml',
+		'local_import_page_file'    => BDI_PLUGIN_PATH . '/demos/buddyx/buddypress/demo-page-content.xml',
+		'local_import_products_file'=> BDI_PLUGIN_PATH . '/demos/buddyx/buddypress/demo-products-content.xml',
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/buddypress/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/buddypress/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddy-demo-bp.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://demo.buddyxtheme.com/',
+		'import_plugins'             	=> [ 'elementor', 'kirki', 'buddypress', 'woocommerce', 'wbcom-essential' ],
+
+    ],
+    [
+		'import_file_name'           	=> 'BuddyX with BB Platform',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/bb-platform/demo-content.xml',
+		'local_import_page_file'    => BDI_PLUGIN_PATH . '/demos/buddyx/bb-platform/demo-bb-page-content.xml',
+		'local_import_products_file'=> BDI_PLUGIN_PATH . '/demos/buddyx/bb-platform/demo-products-content.xml',
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/bb-platform/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/bb-platform/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddy-demo-bp.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://bb-free.buddyxtheme.com/',
+		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'buddyboss-platform', 'woocommerce', 'wbcom-essential' ],
+    ],
+	
+	[
+		'import_file_name'           	=> 'BuddyX with LearnDash',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/learndash/demo-content.xml',		
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/learndash/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/learndash/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/Buddyx-learndash-demo.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/learndash',
+		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'buddyboss-platform', 'woocommerce', 'wbcom-essential' ],
+		'required_activate_plugins'  	=> [
+												'sfwd-lms/sfwd_lms.php' => 'LearnDash LMS',
+												'learndash-course-grid/learndash_course_grid.php' => 'LearnDash LMS - Course Grid',
+											],
+    ],
+	
+	[
+		'import_file_name'           	=> 'BuddyX with LifterLMS',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/lifterlms/demo-content.xml',		
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/lifterlms/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/lifterlms/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddyx-demo-lifterlms.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/lifterlms/',
+		'import_plugins'             	=> [ 'elementor', 'elementskit-lite', 'classic-widgets', 'kirki', 'lifterlms' ],
+    ],
+	
+	[
+		'import_file_name'           	=> 'BuddyX with LearnPress',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/learnpress/demo-content.xml',		
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/learnpress/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/learnpress/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddyx-learnpress-demo.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/learnpress/',
+		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'learnpress', 'wbcom-essential' ],
+    ],
+	
+	[
+		'import_file_name'           	=> 'BuddyX with TutorLMS',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/tutorlms/demo-content.xml',		
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/tutorlms/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/tutorlms/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddyx-tutor-lms.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/tutorlms/',
+		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'tutor', 'wbcom-essential' ],
+    ],
+	
+	[
+		'import_file_name'           	=> 'BuddyX with Dokan',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/dokan/demo-content.xml',		
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/dokan/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/dokan/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddyx-dokan-1.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/dokan/',
+		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'dokan-lite', 'woocommerce' ],
+    ],
+	
+	[
+		'import_file_name'           	=> 'BuddyX with Charity',
+		'categories'                   	=> [],
+		'local_import_file'            	=> BDI_PLUGIN_PATH . '/demos/buddyx/charity/demo-content.xml',		
+		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/charity/widgets.json',
+		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/charity/customizer.dat',
+		'local_import_redux'            => [],
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2021/05/buddy_X-charity.jpg',
+		'import_notice'              	=> __( 'A special note for this import.', 'buddyx-demo-Importer' ),
+		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/charity/',
+		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'the-events-calendar', 'buddypress', 'woocommerce' ],
+    ],
+	
+  ];
+}
+add_filter( 'ocdi/import_files', 'bdi_ocdi_import_files' );
+
+
+function bdi_ocdi_register_plugins( $plugins ) {
+ 
+	// Required: List of plugins used by all theme demos.  
+	$theme_plugins[] = array(
+			'name'     => 'Elementor',
+			'slug'     => 'elementor',
+			'required' => true,			
+		);
+	$theme_plugins[] = array(
+			'name'     => 'Kirki',
+			'slug'     => 'kirki',
+			'required' => true,			
+		);
+	$theme_plugins[] = array(
+		'name'     => 'Classic Widgets',
+		'slug'     => 'classic-widgets',
+		'required' => true,		
+	);
+	
+	// Check if user is on the theme recommeneded plugins step and a demo was selected.
+	if ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) {
+ 
+		// Adding one additional plugin for the first demo import ('import' number = 0).
+		if ( $_GET['import'] === '0' || $_GET['import'] === '7' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'BuddyPress',
+				'slug'     => 'buddypress',
+				'required' => true,
+				
+			);
+		}
+	
+		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7') {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'WooCommerce',
+				'slug'     => 'woocommerce',
+				'required' => true,
+			);
+		}
+	
+	
+		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'Wbcom Essential',
+				'slug'     => 'wbcom-essential',
+				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.7.1/wbcom-essential.zip',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '1' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'BuddyBoss Platform',
+				'slug'     => 'buddyboss-platform',
+				'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.5.00/buddyboss-platform-plugin.zip',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '3' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'ElementsKit Lite',
+				'slug'     => 'elementskit-lite',
+				'required' => true,
+			);
+			$theme_plugins[] = array(
+				'name'     => 'LifterLMS',
+				'slug'     => 'lifterlms',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '4' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'LearnPress',
+				'slug'     => 'learnpress',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '5' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'Tutor LMS',
+				'slug'     => 'tutor',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '6' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'Dokan',
+				'slug'     => 'dokan-lite',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '7' ) {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'The Events Calendar',
+				'slug'     => 'the-events-calendar',
+				'required' => true,
+			);
+		}
+   
+	}
+ 
+	return $theme_plugins;
+}
+add_filter( 'ocdi/register_plugins', 'bdi_ocdi_register_plugins' );
+
+/**
+ * After import setup custom code.
+ */
+function bdi_ocdi_after_import_setup() {
+	// Set static homepage.
+	$homepage = get_page_by_title( apply_filters( 'ocdi_content_home_page_title', 'Homepage' ) );
+
+	if ( $homepage ) {
+		update_option( 'page_on_front', $homepage->ID );
+		update_option( 'show_on_front', 'page' );
+	}
+
+	$home = get_page_by_title( apply_filters( 'ocdi_content_home_page_title', 'Home' ) );
+
+	if ( $home ) {
+		update_option( 'page_on_front', $home->ID );
+		update_option( 'show_on_front', 'page' );
+	}
+
+	// Set static blog page.
+	$blogpage = get_page_by_title( apply_filters( 'ocdi_content_home_page_title', 'Blog' ) );
+
+	if ( $blogpage ) {
+		update_option( 'page_for_posts', $blogpage->ID );
+		update_option( 'show_on_front', 'page' );
+	}
+
+	/*
+	 * Assign Import Menus
+	 */
+	// Set imported menus to registered theme locations
+
+	$locations = get_theme_mod( 'nav_menu_locations' ); // registered menu locations in theme
+	$registered_menus = wp_get_nav_menus(); // registered menus
+	// Assign Menu Name to Registered menus as array keys
+	foreach( $registered_menus as $menu ) {
+
+		if ( $menu->slug == 'main-menu' && strtolower($menu->name) == strtolower('Main Menu') ) {
+			$locations['primary'] = $menu->term_id;
+		}
+		if ( $menu->slug == 'primary-menu' && strtolower($menu->name) == strtolower('Primary Menu') ) {
+			$locations['primary'] = $menu->term_id;
+		}
+
+		if ( $menu->slug == 'user-menu' && strtolower($menu->name) == strtolower('User Menu') ) {
+			$locations['user_menu'] = $menu->term_id;
+		}
+	}
+	set_theme_mod( 'nav_menu_locations', $locations ); // set menus to locations	
+}
+add_action( 'ocdi/after_import', 'bdi_ocdi_after_import_setup' );
+
+function bdi_ocdi_after_content_import_execution( $selected_import_files, $import_files, $selected_index) {
+	
+	if( $selected_index == 0 || $selected_index == 1 || $selected_index == 7 ) {
+		bdi_import_buddypress_demo_data();
+	}
+}
+add_action( 'ocdi/after_content_import_execution', 'bdi_ocdi_after_content_import_execution', 10, 3);
+
+function bdi_import_buddypress_demo_data() {
+	// Cound what we have just imported.
+	$imported = array();
+
+	// Check nonce before we do anything.
+	include_once BDI_PLUGIN_PATH . '/bp-process.php';
+
+	// Import users
+	if ( ! buddyx_bp_is_imported( 'users', 'users' ) ) {
+		$users             = buddyx_bp_import_users();
+		$imported['users'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s new users', 'buddyx-demo-Importer' ),
+			number_format_i18n( count( $users ) )
+		);
+		buddyx_bp_update_import( 'users', 'users' );
+	}
+
+	if ( bp_is_active( 'xprofile' ) && ! buddyx_bp_is_imported( 'users', 'xprofile' ) ) {
+		$profile             = buddyx_bp_import_users_profile();
+		$imported['profile'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s profile entries', 'buddyx-demo-Importer' ),
+			number_format_i18n( $profile )
+		);
+		buddyx_bp_update_import( 'users', 'xprofile' );
+	}
+
+	if ( bp_is_active( 'friends' ) && ! buddyx_bp_is_imported( 'users', 'friends' ) ) {
+		$friends             = buddyx_bp_import_users_friends();
+		$imported['friends'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s friends connections', 'buddyx-demo-Importer' ),
+			number_format_i18n( $friends )
+		);
+		buddyx_bp_update_import( 'users', 'friends' );
+	}
+	
+
+	if ( bp_is_active( 'activity' ) && ! buddyx_bp_is_imported( 'users', 'activity' ) ) {
+		$activity             = buddyx_bp_import_users_activity();
+		$imported['activity'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s personal activity items', 'buddyx-demo-Importer' ),
+			number_format_i18n( $activity )
+		);
+		buddyx_bp_update_import( 'users', 'activity' );
+	}
+
+	// Import groups
+	if ( bp_is_active( 'groups' ) && ! buddyx_bp_is_imported( 'groups', 'groups' ) ) {
+		$groups             = buddyx_bp_import_groups();
+		$imported['groups'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s new groups', 'buddyx-demo-Importer' ),
+			number_format_i18n( count( $groups ) )
+		/* translators: formatted number. */ );
+		buddyx_bp_update_import( 'groups', 'groups' );
+	}
+	if ( bp_is_active( 'groups' ) && ! buddyx_bp_is_imported( 'groups', 'members' ) ) {
+		$g_members             = buddyx_bp_import_groups_members();
+		$imported['g_members'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s groups members (1 user can be in several groups)', 'buddyx-demo-Importer' ),
+			number_format_i18n( count( $g_members ) )
+		);
+		buddyx_bp_update_import( 'groups', 'members' );
+	}
+
+	
+
+	if ( bp_is_active( 'activity' ) && bp_is_active( 'groups' ) && ! buddyx_bp_is_imported( 'groups', 'activity' ) ) {
+		$g_activity             = buddyx_bp_import_groups_activity();
+		$imported['g_activity'] = sprintf( /* translators: formatted number. */
+			esc_html__( '%s groups activity items', 'buddyx-demo-Importer' ),
+			number_format_i18n( $g_activity )
+		);
+		buddyx_bp_update_import( 'groups', 'activity' );
+	}
+
+	return true;
 }
