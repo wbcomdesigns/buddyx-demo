@@ -114,13 +114,15 @@ add_filter( 'merlin_import_files', 'bdi_import_files' );
 
 /* remove Admin init function on Theme Setup wizard start */
 add_action( 'admin_init', 'bdi_remove_admin_init', 0 );
-function bdi_remove_admin_init() {
-	if ( isset( $_GET['page'] ) 
+function bdi_remove_admin_init() {	
+	if ( ( isset( $_GET['page'] ) 
 		&& ( 
 			$_GET['page'] == 'buddyx-sample-demo-import' 
 			|| $_GET['page'] == 'tgmpa-install-plugins' 
 			|| $_GET['page'] == 'one-click-demo-import' 
-			) 
+			) )
+			
+			|| ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin')
 	
 		) {
 		remove_action( 'admin_init', 'is_admin_init' );
@@ -281,10 +283,10 @@ function bdi_ocdi_register_plugins( $plugins ) {
 	);
 	
 	// Check if user is on the theme recommeneded plugins step and a demo was selected.
-	if ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) {
+	if ( ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) || ( isset($_POST['slug']) && $_POST['slug'] != '' ) ) {
  
 		// Adding one additional plugin for the first demo import ('import' number = 0).
-		if ( $_GET['import'] === '0' || $_GET['import'] === '7' ) {
+		if ( $_GET['import'] === '0' || $_GET['import'] === '7'  ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'BuddyPress',
@@ -304,22 +306,22 @@ function bdi_ocdi_register_plugins( $plugins ) {
 		}
 	
 	
-		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5' ) {
+		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5'  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
 				'slug'     => 'wbcom-essential',
-				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.7.1/wbcom-essential.zip',
+				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.8.0/wbcom-essential.zip',
 				'required' => true,
 			);
 		}
 		
-		if ( $_GET['import'] === '1' ) {
+		if ( $_GET['import'] === '1' || ( isset($_POST['slug']) && $_POST['slug'] === 'buddyboss-platform' ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'BuddyBoss Platform',
 				'slug'     => 'buddyboss-platform',
-				'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.5.00/buddyboss-platform-plugin.zip',
+				'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.7.20/buddyboss-platform-plugin.zip',
 				'required' => true,
 			);
 		}
