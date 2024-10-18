@@ -41,7 +41,7 @@ define( 'BDI_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 	}
 }
 
-if ( !class_exists( 'OCDI_Plugin' ) && file_exists( BDI_PLUGIN_PATH . 'includes/one-click-demo-import/one-click-demo-import.php' ) ) {
+if ( !class_exists( 'OCDI_Plugin' ) && ! is_plugin_active( 'one-click-demo-import/one-click-demo-import.php' )) {
 	require_once BDI_PLUGIN_PATH . 'includes/one-click-demo-import/one-click-demo-import.php';
 }
 
@@ -55,6 +55,10 @@ add_action( 'activated_plugin', 'bdi_activated_plugin_redirect' );
 
 function bdi_activated_plugin_redirect( $plugin ) {
 
+	$theme_name = wp_get_theme();
+	if ( 'buddyx' !== $theme_name->template  ) {
+		return;
+	}
 	if ( $plugin === plugin_basename( __FILE__ ) ) {
 
 		if ( isset( $_GET['page'] ) && sanitize_text_field( $_GET['page'] ) === 'tgmpa-install-plugins' ) {
@@ -154,3 +158,29 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	__FILE__, // Full path to the main plugin file or functions.php.
 	'buddyx-demo-importer'
 );
+
+
+/**
+ *  Check if buddypress activate.
+ */
+function buddyx_demo_reactions_requires_buddyx() {
+	$theme_name = wp_get_theme();
+		
+	if (  'buddyx' !== $theme_name->template ) {
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		add_action( 'admin_notices', 'buddyx_demo_reactions_required_theme_admin_notice' );
+		unset( $_GET['activate'] );
+	}
+}
+add_action( 'admin_init', 'buddyx_demo_reactions_requires_buddyx' );
+
+function buddyx_demo_reactions_required_theme_admin_notice() {
+	$bpreaction_plugin 	= esc_html__( ' BuddyX Demo Importer', 'buddyx-demo-Importer' );
+	$bp_theme       	= esc_html__( 'BuddyX', 'buddyx-demo-Importer' );
+	echo '<div class="error"><p>';
+	echo sprintf( esc_html__( '%1$s is ineffective now as it requires %2$s theme to be installed and active.', 'buddyx-demo-Importer' ), '<strong>' . esc_html( $bpreaction_plugin ) . '</strong>', '<strong>' . esc_html( $bp_theme ) . '</strong>' );
+	echo '</p></div>';
+	if ( isset( $_GET['activate'] ) ) {
+		unset( $_GET['activate'] );
+	}
+}

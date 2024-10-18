@@ -115,6 +115,14 @@ add_filter( 'merlin_import_files', 'bdi_import_files' );
 /* remove Admin init function on Theme Setup wizard start */
 add_action( 'admin_init', 'bdi_remove_admin_init', 0 );
 function bdi_remove_admin_init() {	
+
+	if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin' && isset( $_REQUEST['slug'] ) && $_REQUEST['slug'] == 'woocommerce') {
+		update_option( 'woocommerce_onboarding_profile', [ 'completed'=> true, 'skipped' => true ]);
+		// Remove the redirect transient set by WooCommerce after activation
+		if ( get_transient( '_wc_activation_redirect' ) ) {
+			delete_transient( '_wc_activation_redirect' );
+		}
+	}
 	if ( ( isset( $_GET['page'] ) 
 		&& ( 
 			$_GET['page'] == 'buddyx-sample-demo-import' 
@@ -125,13 +133,15 @@ function bdi_remove_admin_init() {
 			|| ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin')
 	
 		) {
+		// Remove the redirect transient set by WooCommerce after activation
+		if ( get_transient( '_wc_activation_redirect' ) ) {
+			delete_transient( '_wc_activation_redirect' );
+		}
+		
 		remove_action( 'admin_init', 'is_admin_init' );
-		add_filter(
-			'woocommerce_enable_setup_wizard',
-			function() {
-				return false;
-			}
-		);
+		add_filter( 'woocommerce_enable_setup_wizard', '__return_false');		
+		add_filter( 'woocommerce_prevent_automatic_wizard_redirect', '__return_false' );
+		
 		update_option( 'wpforms_activation_redirect', true );
 		if ( did_action( 'elementor/loaded' ) ) {
 			remove_action( 'admin_init', array( \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ) );
