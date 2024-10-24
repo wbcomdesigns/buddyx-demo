@@ -362,6 +362,15 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
+		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7') {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'WooCommerce',
+				'slug'     => 'woocommerce',
+				'required' => true,
+			);
+		}
+		
 		if ( $_GET['import'] === '6' ) {
 		  
 			$theme_plugins[] = array(
@@ -380,14 +389,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7') {
-		  
-			$theme_plugins[] = array(
-				'name'     => 'WooCommerce',
-				'slug'     => 'woocommerce',
-				'required' => true,
-			);
-		}
+		
    
 	}
  
