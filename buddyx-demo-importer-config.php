@@ -24,6 +24,9 @@ function bdi_remove_admin_init() {
 	/* Pass activate multi plugin in get request*/
 	if( isset( $_REQUEST['action'] ) && ( $_REQUEST['action'] == 'ocdi_install_plugin' || $_REQUEST['action'] == 'ocdi_import_demo_data' ) ) {
 		$_GET['activate-multi'] = true;
+		if( isset( $_REQUEST['slug'] ) && $_REQUEST['slug'] == 'dokan-lite' ) {
+			update_option( 'dokan_theme_version', true );
+		}
 	}
 	if ( ( isset( $_GET['page'] ) 
 		&& ( 
