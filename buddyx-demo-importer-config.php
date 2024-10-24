@@ -123,6 +123,10 @@ function bdi_remove_admin_init() {
 			delete_transient( '_wc_activation_redirect' );
 		}
 	}
+	/* Pass activate multi plugin in get request*/
+	if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin' ) {
+		$_GET['activate-multi'] = true;
+	}
 	if ( ( isset( $_GET['page'] ) 
 		&& ( 
 			$_GET['page'] == 'buddyx-sample-demo-import' 
@@ -306,16 +310,6 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 	
-		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7') {
-		  
-			$theme_plugins[] = array(
-				'name'     => 'WooCommerce',
-				'slug'     => 'woocommerce',
-				'required' => true,
-			);
-		}
-	
-	
 		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5'  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' ) ) {
 		  
 			$theme_plugins[] = array(
@@ -382,6 +376,15 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			$theme_plugins[] = array(
 				'name'     => 'The Events Calendar',
 				'slug'     => 'the-events-calendar',
+				'required' => true,
+			);
+		}
+		
+		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7') {
+		  
+			$theme_plugins[] = array(
+				'name'     => 'WooCommerce',
+				'slug'     => 'woocommerce',
 				'required' => true,
 			);
 		}
