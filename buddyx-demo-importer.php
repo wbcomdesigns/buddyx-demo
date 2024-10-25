@@ -36,8 +36,6 @@ define( 'BDI_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 		if ( file_exists( BDI_PLUGIN_PATH . 'includes/buddyx-demo-functions.php' ) ) {
 			require_once BDI_PLUGIN_PATH . 'includes/buddyx-demo-functions.php';
 		}
-
-		
 	}
 }
 

@@ -201,7 +201,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 	if ( ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) || ( isset($_POST['slug']) && $_POST['slug'] != '' ) ) {
  
 		// Adding one additional plugin for the first demo import ('import' number = 0).
-		if ( $_GET['import'] === '0' || $_GET['import'] === '7'  ) {
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '7' ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'BuddyPress',
@@ -211,7 +211,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 	
-		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5'  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' ) ) {
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5'  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' ) ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
@@ -221,7 +221,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '1' || ( isset($_POST['slug']) && $_POST['slug'] === 'buddyboss-platform' ) ) {
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '1' || ( isset($_POST['slug']) && $_POST['slug'] === 'buddyboss-platform' ) ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'BuddyBoss Platform',
@@ -231,7 +231,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '3' ) {
+		if ( isset( $_GET['import'] ) && $_GET['import'] === '3' ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'ElementsKit Lite',
@@ -245,7 +245,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '4' ) {
+		if ( isset( $_GET['import'] ) && $_GET['import'] === '4' ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'LearnPress',
@@ -254,7 +254,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '5' ) {
+		if ( isset( $_GET['import'] ) && $_GET['import'] === '5' ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'Tutor LMS',
@@ -263,7 +263,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7') {
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7' ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'WooCommerce',
@@ -272,7 +272,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '6' ) {
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '6' ) ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'Dokan',
@@ -281,7 +281,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( $_GET['import'] === '7' ) {
+		if ( isset( $_GET['import'] ) && $_GET['import'] === '7' ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'The Events Calendar',
@@ -301,8 +301,10 @@ add_filter( 'ocdi/register_plugins', 'bdi_ocdi_register_plugins' );
 /**
  * After import setup custom code.
  */
-function bdi_ocdi_after_import_setup() {
+function bdi_ocdi_after_import_setup( $import_files ) {
 	// Set static homepage.
+	global $wpdb;
+	
 	$homepage = get_page_by_title( apply_filters( 'ocdi_content_home_page_title', 'Homepage' ) );
 
 	if ( $homepage ) {
@@ -346,7 +348,8 @@ function bdi_ocdi_after_import_setup() {
 			$locations['user_menu'] = $menu->term_id;
 		}
 	}
-	set_theme_mod( 'nav_menu_locations', $locations ); // set menus to locations	
+	set_theme_mod( 'nav_menu_locations', $locations ); // set menus to locations
+	update_option('odi_import_files', $import_files);	
 }
 add_action( 'ocdi/after_import', 'bdi_ocdi_after_import_setup' );
 
@@ -434,3 +437,15 @@ function bdi_import_buddypress_demo_data() {
 
 	return true;
 }
+function bdi_ocdi_plugin_page_title() {
+	ob_start(); ?>
+	<div class="ocdi__title-container">
+		<h1 class="ocdi__title-container-title"><?php esc_html_e( 'BuddyX Demo Import', 'one-click-demo-import' ); ?></h1>
+		<a href="https://ocdi.com/user-guide/" target="_blank" rel="noopener noreferrer">
+			<img class="ocdi__title-container-icon" src="<?php echo esc_url( OCDI_URL . 'assets/images/icons/question-circle.svg' ); ?>" alt="<?php esc_attr_e( 'Questionmark icon', 'one-click-demo-import' ); ?>">
+		</a>
+	</div>
+	<?php
+	return $plugin_title = ob_get_clean();
+}
+add_filter( 'ocdi/plugin_page_title', 'bdi_ocdi_plugin_page_title');
