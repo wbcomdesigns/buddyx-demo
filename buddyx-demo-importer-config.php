@@ -211,7 +211,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 	
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5'  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' ) ) ) {
+		if ( ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5' ) )  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' )  ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
@@ -221,7 +221,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 		
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '1' || ( isset($_POST['slug']) && $_POST['slug'] === 'buddyboss-platform' ) ) ) {
+		if ( ( isset( $_GET['import'] ) &&  $_GET['import'] === '1' ) || ( isset($_POST['slug']) && $_POST['slug'] === 'buddyboss-platform' )  ) {
 		  
 			$theme_plugins[] = array(
 				'name'     => 'BuddyBoss Platform',
