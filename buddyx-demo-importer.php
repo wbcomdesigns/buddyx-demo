@@ -38,10 +38,13 @@ define( 'BDI_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 		}
 	}
 }
-
-if ( !class_exists( 'OCDI_Plugin' ) && ! is_plugin_active( 'one-click-demo-import/one-click-demo-import.php' )) {
-	require_once BDI_PLUGIN_PATH . 'includes/one-click-demo-import/one-click-demo-import.php';
+if(is_admin()) {
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+	if ( !class_exists( 'OCDI_Plugin' ) && ! is_plugin_active( 'one-click-demo-import/one-click-demo-import.php' )) {
+		require_once BDI_PLUGIN_PATH . 'includes/one-click-demo-import/one-click-demo-import.php';
+	}
 }
+
 
 if ( file_exists( BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php' ) ) {				
 	require_once BDI_PLUGIN_PATH . 'buddyx-demo-importer-config.php';			
