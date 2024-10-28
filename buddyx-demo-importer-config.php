@@ -349,7 +349,39 @@ function bdi_ocdi_after_import_setup( $import_files ) {
 		}
 	}
 	set_theme_mod( 'nav_menu_locations', $locations ); // set menus to locations
-	update_option('odi_import_files', $import_files);	
+	
+	/*
+	 * Update Custom URL in menu
+	 */
+	//update_option('odi_import_files', $import_files);		
+	$preview_url = ( isset($import_files['preview_url']) && $import_files['preview_url'] != '' ) ? $import_files['preview_url'] : '';
+	
+	if( $preview_url != '' ) {
+		
+		$query 			= "Select * from {$wpdb->prefix}postmeta where meta_key='_menu_item_url'";
+		$results 		= $wpdb->get_results( $query );
+		$find_string 	= $preview_url;
+		$replace_string = trailingslashit( get_site_url() );
+		if( !empty( $results )) {
+			foreach( $results as $res ) {		
+				if( trim( $res->meta_value ) != '' ) {
+					$meta_value = str_replace( $find_string, $replace_string, $res->meta_value );					
+					$data 			= [ 'meta_value' => $meta_value ];
+					$where 			= [ 'meta_id' => $res->meta_id ];
+					$format			= [ '%s'];
+					$where_format	= [ '%d'];
+					$wpdb->update( 
+						"{$wpdb->prefix}postmeta",       // Table name
+						$data,        // Data array (column => value)
+						$where,       // Where clause array (column => value)
+						$format = null,  // Optional data format array (e.g., ['%s', '%d'])
+						$where_format = null // Optional where format array (e.g., ['%d'])
+					);
+				}
+			}
+		}
+
+	}
 }
 add_action( 'ocdi/after_import', 'bdi_ocdi_after_import_setup' );
 
