@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-	<!-- generator="WordPress/6.6.2" created="2024-10-25 08:52" -->
+	<!-- generator="WordPress/6.6.2" created="2024-10-28 13:19" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>LearnPress Demo- WordPress LMS Plugin</title>
 	<link>https://lms-demos.buddyxtheme.com/learnpress</link>
 	<description>Just another BuddyX LMS Demos Sites site</description>
-	<pubDate>Fri, 25 Oct 2024 08:52:29 +0000</pubDate>
+	<pubDate>Mon, 28 Oct 2024 13:19:58 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>https://lms-demos.buddyxtheme.com/</wp:base_site_url>
@@ -37,6 +37,7 @@
 
 		<wp:author><wp:author_id>1</wp:author_id><wp:author_login><![CDATA[wbcomteam]]></wp:author_login><wp:author_email><![CDATA[varun@wbcomdesigns.com]]></wp:author_email><wp:author_display_name><![CDATA[Varun Dubey]]></wp:author_display_name><wp:author_first_name><![CDATA[andre]]></wp:author_first_name><wp:author_last_name><![CDATA[disuja]]></wp:author_last_name></wp:author>
 	<wp:author><wp:author_id>84</wp:author_id><wp:author_login><![CDATA[wbcom12]]></wp:author_login><wp:author_email><![CDATA[upendrawbcom@gmail.com]]></wp:author_email><wp:author_display_name><![CDATA[wbcom12]]></wp:author_display_name><wp:author_first_name><![CDATA[]]></wp:author_first_name><wp:author_last_name><![CDATA[]]></wp:author_last_name></wp:author>
+	<wp:author><wp:author_id>102</wp:author_id><wp:author_login><![CDATA[wbcomteamnew]]></wp:author_login><wp:author_email><![CDATA[wbcomteam@gmail.com]]></wp:author_email><wp:author_display_name><![CDATA[wbcomteamnew]]></wp:author_display_name><wp:author_first_name><![CDATA[]]></wp:author_first_name><wp:author_last_name><![CDATA[]]></wp:author_last_name></wp:author>
 
 		<wp:category>
 		<wp:term_id>4</wp:term_id>
@@ -357,10 +358,43 @@
 		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
 		<wp:meta_value><![CDATA[a:5:{s:5:"width";i:750;s:6:"height";i:422;s:4:"file";s:26:"2020/12/course-bitcoin.jpg";s:5:"sizes";a:4:{s:6:"medium";a:4:{s:4:"file";s:26:"course-bitcoin-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";}s:9:"thumbnail";a:4:{s:4:"file";s:26:"course-bitcoin-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:16:"course_thumbnail";a:4:{s:4:"file";s:26:"course-bitcoin-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";}s:15:"buddyx-featured";a:4:{s:4:"file";s:26:"course-bitcoin-720x405.jpg";s:5:"width";i:720;s:6:"height";i:405;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}]]></wp:meta_value>
 		</wp:postmeta>
-							</item>					
+							</item>
+					<item>
+		<title><![CDATA[Web]]></title>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/course/investing-in-stocks-on-the-stock-market/web/</link>
+		<pubDate>Thu, 10 Dec 2020 08:12:52 +0000</pubDate>
+		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
+		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/for-blog_2june_little-money-03.jpg</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>66</wp:post_id>
+		<wp:post_date><![CDATA[2020-12-10 08:12:52]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2020-12-10 08:12:52]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2020-12-10 08:12:52]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2020-12-10 08:12:52]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[web]]></wp:post_name>
+		<wp:status><![CDATA[inherit]]></wp:status>
+		<wp:post_parent>42</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[attachment]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+						<wp:attachment_url><![CDATA[https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/for-blog_2june_little-money-03.jpg]]></wp:attachment_url>
+											<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2020/12/for-blog_2june_little-money-03.jpg]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:5:{s:5:"width";i:1280;s:6:"height";i:720;s:4:"file";s:42:"2020/12/for-blog_2june_little-money-03.jpg";s:5:"sizes";a:6:{s:6:"medium";a:4:{s:4:"file";s:42:"for-blog_2june_little-money-03-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:43:"for-blog_2june_little-money-03-1024x576.jpg";s:5:"width";i:1024;s:6:"height";i:576;s:9:"mime-type";s:10:"image/jpeg";}s:9:"thumbnail";a:4:{s:4:"file";s:42:"for-blog_2june_little-money-03-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:12:"medium_large";a:4:{s:4:"file";s:42:"for-blog_2june_little-money-03-768x432.jpg";s:5:"width";i:768;s:6:"height";i:432;s:9:"mime-type";s:10:"image/jpeg";}s:16:"course_thumbnail";a:4:{s:4:"file";s:42:"for-blog_2june_little-money-03-300x169.jpg";s:5:"width";i:300;s:6:"height";i:169;s:9:"mime-type";s:10:"image/jpeg";}s:15:"buddyx-featured";a:4:{s:4:"file";s:42:"for-blog_2june_little-money-03-720x405.jpg";s:5:"width";i:720;s:6:"height";i:405;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:3:"Web";s:11:"orientation";s:1:"1";s:8:"keywords";a:0:{}}}]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
 					<item>
 		<title><![CDATA[blog-img7]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img7/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img7/</link>
 		<pubDate>Mon, 14 Dec 2020 11:38:54 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img7.jpg</guid>
@@ -393,7 +427,7 @@
 							</item>
 					<item>
 		<title><![CDATA[blog-img1]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img1/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img1/</link>
 		<pubDate>Mon, 14 Dec 2020 11:38:56 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img1.jpg</guid>
@@ -426,7 +460,7 @@
 							</item>
 					<item>
 		<title><![CDATA[blog-img2]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img2/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img2/</link>
 		<pubDate>Mon, 14 Dec 2020 11:38:58 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img2.jpg</guid>
@@ -459,7 +493,7 @@
 							</item>
 					<item>
 		<title><![CDATA[blog-img3]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img3/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img3/</link>
 		<pubDate>Mon, 14 Dec 2020 11:39:00 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img3.jpg</guid>
@@ -492,7 +526,7 @@
 							</item>
 					<item>
 		<title><![CDATA[blog-img4]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img4/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img4/</link>
 		<pubDate>Mon, 14 Dec 2020 11:39:03 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img4.jpg</guid>
@@ -525,7 +559,7 @@
 							</item>
 					<item>
 		<title><![CDATA[blog-img5]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img5/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img5/</link>
 		<pubDate>Mon, 14 Dec 2020 11:39:06 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img5.jpg</guid>
@@ -558,7 +592,7 @@
 							</item>
 					<item>
 		<title><![CDATA[blog-img6]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/blog-img6/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/blog-img6/</link>
 		<pubDate>Mon, 14 Dec 2020 11:39:10 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/blog-img6.jpg</guid>
@@ -954,7 +988,44 @@
 		<wp:meta_key><![CDATA[_elementor_source_image_hash]]></wp:meta_key>
 		<wp:meta_value><![CDATA[1986045f6057b60ff7a0fe9cdacd3922c813c29f]]></wp:meta_value>
 		</wp:postmeta>
-							</item>					
+							</item>
+					<item>
+		<title><![CDATA[portrait-of-programmers-working-in-development-PLVAGX2.jpg]]></title>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/portrait-of-programmers-working-in-development-plvagx2-jpg/</link>
+		<pubDate>Mon, 14 Dec 2020 12:00:27 +0000</pubDate>
+		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
+		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/portrait-of-programmers-working-in-development-PLVAGX2.jpg</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>355</wp:post_id>
+		<wp:post_date><![CDATA[2020-12-14 12:00:27]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2020-12-14 12:00:27]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2020-12-14 12:00:27]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2020-12-14 12:00:27]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[open]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[portrait-of-programmers-working-in-development-plvagx2-jpg]]></wp:post_name>
+		<wp:status><![CDATA[inherit]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type><![CDATA[attachment]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+						<wp:attachment_url><![CDATA[https://lms-demos.buddyxtheme.com/learnpress/wp-content/uploads/sites/4/2020/12/portrait-of-programmers-working-in-development-PLVAGX2.jpg]]></wp:attachment_url>
+											<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2020/12/portrait-of-programmers-working-in-development-PLVAGX2.jpg]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_attachment_metadata]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:5:{s:5:"width";i:1920;s:6:"height";i:1280;s:4:"file";s:66:"2020/12/portrait-of-programmers-working-in-development-PLVAGX2.jpg";s:5:"sizes";a:8:{s:6:"medium";a:4:{s:4:"file";s:66:"portrait-of-programmers-working-in-development-PLVAGX2-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:67:"portrait-of-programmers-working-in-development-PLVAGX2-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:9:"thumbnail";a:4:{s:4:"file";s:66:"portrait-of-programmers-working-in-development-PLVAGX2-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:12:"medium_large";a:4:{s:4:"file";s:66:"portrait-of-programmers-working-in-development-PLVAGX2-768x512.jpg";s:5:"width";i:768;s:6:"height";i:512;s:9:"mime-type";s:10:"image/jpeg";}s:9:"1536x1536";a:4:{s:4:"file";s:68:"portrait-of-programmers-working-in-development-PLVAGX2-1536x1024.jpg";s:5:"width";i:1536;s:6:"height";i:1024;s:9:"mime-type";s:10:"image/jpeg";}s:16:"course_thumbnail";a:4:{s:4:"file";s:66:"portrait-of-programmers-working-in-development-PLVAGX2-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:15:"buddyx-featured";a:4:{s:4:"file";s:66:"portrait-of-programmers-working-in-development-PLVAGX2-720x480.jpg";s:5:"width";i:720;s:6:"height";i:480;s:9:"mime-type";s:10:"image/jpeg";}s:24:"elementor_custom_470x286";a:4:{s:4:"file";s:118:"elementor/thumbs/portrait-of-programmers-working-in-development-PLVAGX2-ozuq02uas6zeifif0b975yaqmlgiklc0t9k83z0c6k.jpg";s:5:"width";i:470;s:6:"height";i:286;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:72:"Portrait of programmers working together in development software company";s:17:"created_timestamp";s:10:"1480256155";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:63:"Portrait of programmers working in development software company";s:11:"orientation";s:1:"1";s:8:"keywords";a:32:{i:0;s:11:"programming";i:1;s:6:"people";i:2;s:10:"programmer";i:3;s:8:"together";i:4;s:7:"develop";i:5;s:4:"work";i:6;s:8:"software";i:7;s:4:"team";i:8;s:5:"study";i:9;s:8:"engineer";i:10;s:8:"students";i:11;s:5:"group";i:12;s:6:"office";i:13;s:3:"app";i:14;s:3:"web";i:15;s:6:"design";i:16;s:8:"computer";i:17;s:7:"desktop";i:18;s:9:"corporate";i:19;s:8:"designer";i:20;s:8:"internet";i:21;s:7:"network";i:22;s:8:"language";i:23;s:7:"program";i:24;s:7:"support";i:25;s:11:"application";i:26;s:13:"brainstorming";i:27;s:4:"data";i:28;s:8:"creative";i:29;s:8:"teamwork";i:30;s:9:"colleague";i:31;s:5:"young";}}}]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_elementor_source_image_hash]]></wp:meta_key>
+		<wp:meta_value><![CDATA[5f9a0dd43227345f68c1950504e6102170799289]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
 					<item>
 		<title><![CDATA[book.png]]></title>
 		<link>https://lms-demos.buddyxtheme.com/learnpress/book-png/</link>
@@ -3083,7 +3154,7 @@ This course is for students who wish to confidently navigate the rapidly evolvin
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[588]]></wp:meta_value>
+		<wp:meta_value><![CDATA[591]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_lp_allow_course_repurchase]]></wp:meta_key>
@@ -3768,7 +3839,7 @@ This course is designed for anyone who wants to earn extra income by investing i
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[440]]></wp:meta_value>
+		<wp:meta_value><![CDATA[443]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -4166,7 +4237,7 @@ Enrol on this course and find out just how well I can answer these questions. I'
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[712]]></wp:meta_value>
+		<wp:meta_value><![CDATA[713]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -4275,7 +4346,7 @@ As the course progresses, you’ll learn what words to choose, how to turn turgi
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[792]]></wp:meta_value>
+		<wp:meta_value><![CDATA[795]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -4389,7 +4460,7 @@ The course is setup to quickly take you through step by step, the process of dra
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[572]]></wp:meta_value>
+		<wp:meta_value><![CDATA[576]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -4494,7 +4565,7 @@ Do you have no prior experience in SQL development? This course is perfect for y
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[484]]></wp:meta_value>
+		<wp:meta_value><![CDATA[488]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -7948,7 +8019,7 @@ Company for Their Requirements</h3>
 							</item>
 					<item>
 		<title><![CDATA[]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/483/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/483/</link>
 		<pubDate>Mon, 14 Dec 2020 14:24:27 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/?p=483</guid>
@@ -7956,10 +8027,10 @@ Company for Their Requirements</h3>
 		<content:encoded><![CDATA[ ]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>483</wp:post_id>
-		<wp:post_date><![CDATA[2023-09-11 12:25:56]]></wp:post_date>
+		<wp:post_date><![CDATA[2024-10-28 13:19:05]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2020-12-14 14:24:27]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2023-09-11 12:25:56]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2023-09-11 12:25:56]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-10-28 13:19:05]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[483]]></wp:post_name>
@@ -8018,10 +8089,14 @@ Company for Their Requirements</h3>
 		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
 		<wp:meta_value><![CDATA[2023-08-29]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2023-09-11]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/484/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/484/</link>
 		<pubDate>Mon, 14 Dec 2020 14:24:27 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/?p=484</guid>
@@ -8029,10 +8104,10 @@ Company for Their Requirements</h3>
 		<content:encoded><![CDATA[ ]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>484</wp:post_id>
-		<wp:post_date><![CDATA[2023-09-11 12:25:56]]></wp:post_date>
+		<wp:post_date><![CDATA[2024-10-28 13:19:05]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2020-12-14 14:24:27]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2023-09-11 12:25:56]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2023-09-11 12:25:56]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-10-28 13:19:05]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[484]]></wp:post_name>
@@ -8091,6 +8166,10 @@ Company for Their Requirements</h3>
 		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
 		<wp:meta_value><![CDATA[2023-08-29]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2023-09-11]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[Profile]]></title>
@@ -8132,7 +8211,7 @@ Company for Their Requirements</h3>
 							</item>
 					<item>
 		<title><![CDATA[]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/488/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/488/</link>
 		<pubDate>Mon, 14 Dec 2020 14:28:32 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/2020/12/14/488/</guid>
@@ -8140,10 +8219,10 @@ Company for Their Requirements</h3>
 		<content:encoded><![CDATA[ ]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>488</wp:post_id>
-		<wp:post_date><![CDATA[2023-09-11 12:25:56]]></wp:post_date>
+		<wp:post_date><![CDATA[2024-10-28 13:19:05]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2020-12-14 14:28:32]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2023-09-11 12:25:56]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2023-09-11 12:25:56]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-10-28 13:19:05]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[488]]></wp:post_name>
@@ -8193,71 +8272,6 @@ Company for Their Requirements</h3>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
 		<wp:meta_value><![CDATA[2020-12-14]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
-		<wp:meta_value><![CDATA[2022-08-26]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
-		<wp:meta_value><![CDATA[2023-08-29]]></wp:meta_value>
-		</wp:postmeta>
-							</item>
-					<item>
-		<title><![CDATA[]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/13/703/</link>
-		<pubDate>Fri, 26 Aug 2022 08:48:40 +0000</pubDate>
-		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
-		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/?p=703</guid>
-		<description></description>
-		<content:encoded><![CDATA[ ]]></content:encoded>
-		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
-		<wp:post_id>703</wp:post_id>
-		<wp:post_date><![CDATA[2023-09-13 05:32:18]]></wp:post_date>
-		<wp:post_date_gmt><![CDATA[2022-08-26 08:48:40]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2023-09-13 05:32:18]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2023-09-13 05:32:18]]></wp:post_modified_gmt>
-		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
-		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
-		<wp:post_name><![CDATA[703]]></wp:post_name>
-		<wp:status><![CDATA[publish]]></wp:status>
-		<wp:post_parent>0</wp:post_parent>
-		<wp:menu_order>2</wp:menu_order>
-		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
-		<wp:post_password><![CDATA[]]></wp:post_password>
-		<wp:is_sticky>0</wp:is_sticky>
-										<category domain="nav_menu" nicename="main-menu"><![CDATA[Main Menu]]></category>
-						<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
-		<wp:meta_value><![CDATA[post_type]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
-		<wp:meta_value><![CDATA[0]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
-		<wp:meta_value><![CDATA[480]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
-		<wp:meta_value><![CDATA[page]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
-		<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_classes]]></wp:meta_key>
-		<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_xfn]]></wp:meta_key>
-		<wp:meta_value><![CDATA[]]></wp:meta_value>
-		</wp:postmeta>
-							<wp:postmeta>
-		<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
-		<wp:meta_value><![CDATA[]]></wp:meta_value>
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
@@ -8394,7 +8408,7 @@ Company for Their Requirements</h3>
 														</item>
 					<item>
 		<title><![CDATA[]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/1171/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/1171/</link>
 		<pubDate>Mon, 11 Sep 2023 12:10:52 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/1171/</guid>
@@ -8402,10 +8416,10 @@ Company for Their Requirements</h3>
 		<content:encoded><![CDATA[ ]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>1171</wp:post_id>
-		<wp:post_date><![CDATA[2023-09-11 12:25:56]]></wp:post_date>
+		<wp:post_date><![CDATA[2024-10-28 13:19:05]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2023-09-11 12:10:52]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2023-09-11 12:25:56]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2023-09-11 12:25:56]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-10-28 13:19:05]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[1171]]></wp:post_name>
@@ -8448,21 +8462,25 @@ Company for Their Requirements</h3>
 		<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
 		<wp:meta_value><![CDATA[]]></wp:meta_value>
 		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2023-09-11]]></wp:meta_value>
+		</wp:postmeta>
 							</item>
 					<item>
-		<title><![CDATA[Home]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/13/home/</link>
+		<title><![CDATA[]]></title>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/home/</link>
 		<pubDate>Wed, 13 Sep 2023 05:32:18 +0000</pubDate>
 		<dc:creator><![CDATA[wbcom12]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/2023/09/13/home/</guid>
 		<description></description>
-		<content:encoded><![CDATA[]]></content:encoded>
+		<content:encoded><![CDATA[ ]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>1433</wp:post_id>
-		<wp:post_date><![CDATA[2023-09-13 05:32:18]]></wp:post_date>
+		<wp:post_date><![CDATA[2024-10-28 13:19:05]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[2023-09-13 05:32:18]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2023-09-13 05:32:18]]></wp:post_modified>
-		<wp:post_modified_gmt><![CDATA[2023-09-13 05:32:18]]></wp:post_modified_gmt>
+		<wp:post_modified><![CDATA[2024-10-28 13:19:05]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
 		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
 		<wp:post_name><![CDATA[home]]></wp:post_name>
@@ -8504,6 +8522,10 @@ Company for Their Requirements</h3>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
 		<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_wp_old_date]]></wp:meta_key>
+		<wp:meta_value><![CDATA[2023-09-13]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -8576,6 +8598,63 @@ Company for Their Requirements</h3>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[_created_via]]></wp:meta_key>
 		<wp:meta_value><![CDATA[checkout]]></wp:meta_value>
+		</wp:postmeta>
+							</item>
+					<item>
+		<title><![CDATA[Courses]]></title>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/courses/</link>
+		<pubDate>Mon, 28 Oct 2024 13:19:05 +0000</pubDate>
+		<dc:creator><![CDATA[wbcomteamnew]]></dc:creator>
+		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/?p=1447</guid>
+		<description></description>
+		<content:encoded><![CDATA[]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>1447</wp:post_id>
+		<wp:post_date><![CDATA[2024-10-28 13:19:05]]></wp:post_date>
+		<wp:post_date_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_date_gmt>
+		<wp:post_modified><![CDATA[2024-10-28 13:19:05]]></wp:post_modified>
+		<wp:post_modified_gmt><![CDATA[2024-10-28 13:19:05]]></wp:post_modified_gmt>
+		<wp:comment_status><![CDATA[closed]]></wp:comment_status>
+		<wp:ping_status><![CDATA[closed]]></wp:ping_status>
+		<wp:post_name><![CDATA[courses]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>2</wp:menu_order>
+		<wp:post_type><![CDATA[nav_menu_item]]></wp:post_type>
+		<wp:post_password><![CDATA[]]></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+										<category domain="nav_menu" nicename="main-menu"><![CDATA[Main Menu]]></category>
+						<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_type]]></wp:meta_key>
+		<wp:meta_value><![CDATA[custom]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_menu_item_parent]]></wp:meta_key>
+		<wp:meta_value><![CDATA[0]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_object_id]]></wp:meta_key>
+		<wp:meta_value><![CDATA[1447]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_object]]></wp:meta_key>
+		<wp:meta_value><![CDATA[custom]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_target]]></wp:meta_key>
+		<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_classes]]></wp:meta_key>
+		<wp:meta_value><![CDATA[a:1:{i:0;s:0:"";}]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_xfn]]></wp:meta_key>
+		<wp:meta_value><![CDATA[]]></wp:meta_value>
+		</wp:postmeta>
+							<wp:postmeta>
+		<wp:meta_key><![CDATA[_menu_item_url]]></wp:meta_key>
+		<wp:meta_value><![CDATA[https://lms-demos.buddyxtheme.com/learnpress/courses/]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -8702,7 +8781,7 @@ Commenter avatars come from <a href="https://gravatar.com" rel="nofollow ugc">Gr
 					</item>
 					<item>
 		<title><![CDATA[Amazing Tips To Avoid Failure in Travaling Alone]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/amazing-tips-to-avoid-failure-in-travaling-alone/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/amazing-tips-to-avoid-failure-in-travaling-alone/</link>
 		<pubDate>Thu, 10 Dec 2020 11:29:58 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=313</guid>
@@ -8789,12 +8868,12 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[69]]></wp:meta_value>
+		<wp:meta_value><![CDATA[70]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[Brand New People on the Music Scene]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/brand-new-people-on-the-music-scene/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/brand-new-people-on-the-music-scene/</link>
 		<pubDate>Thu, 10 Dec 2020 11:37:02 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=316</guid>
@@ -8886,7 +8965,7 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 							</item>
 					<item>
 		<title><![CDATA[Tricks to Organize Your Perfect Trip]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/tricks-to-organize-your-perfect-trip/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/tricks-to-organize-your-perfect-trip/</link>
 		<pubDate>Thu, 10 Dec 2020 11:37:27 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=317</guid>
@@ -8978,7 +9057,7 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 							</item>
 					<item>
 		<title><![CDATA[The Lifestyle News You Missed This Week]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/lifestyle-the-lifestyle-news-you-missed-this-week/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/lifestyle-the-lifestyle-news-you-missed-this-week/</link>
 		<pubDate>Thu, 10 Dec 2020 11:37:45 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=318</guid>
@@ -9099,7 +9178,7 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 							</item>
 					<item>
 		<title><![CDATA[Where to Find the Greatest Inspiration]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/where-to-find-the-greatest-inspiration/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/where-to-find-the-greatest-inspiration/</link>
 		<pubDate>Thu, 10 Dec 2020 11:38:08 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=319</guid>
@@ -9186,12 +9265,12 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[94]]></wp:meta_value>
+		<wp:meta_value><![CDATA[95]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
 		<title><![CDATA[Flutter: the good, the bad and the ugly]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/flutter-the-good-the-bad-and-the-ugly/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/flutter-the-good-the-bad-and-the-ugly/</link>
 		<pubDate>Thu, 10 Dec 2020 11:38:31 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=320</guid>
@@ -9291,7 +9370,7 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 							</item>
 					<item>
 		<title><![CDATA[Traditional design won’t save us in the COVID-19 era]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/traditional-design-wont-save-us-in-the-covid-19-era/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/traditional-design-wont-save-us-in-the-covid-19-era/</link>
 		<pubDate>Thu, 10 Dec 2020 11:39:06 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=321</guid>
@@ -9383,7 +9462,7 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 							</item>
 					<item>
 		<title><![CDATA[Things That Happen When You Are Cooking]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2020/12/10/things-that-happen-when-you-are-cooking/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/things-that-happen-when-you-are-cooking/</link>
 		<pubDate>Thu, 10 Dec 2020 11:39:33 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/lifterlms/?p=322</guid>
@@ -9470,7 +9549,7 @@ Vestibulum consectetur feugiat justo sit amet aliquam. Aliquam eget venenatis ni
 		</wp:postmeta>
 							<wp:postmeta>
 		<wp:meta_key><![CDATA[wpb_post_views_count]]></wp:meta_key>
-		<wp:meta_value><![CDATA[118]]></wp:meta_value>
+		<wp:meta_value><![CDATA[119]]></wp:meta_value>
 		</wp:postmeta>
 							</item>
 					<item>
@@ -9845,7 +9924,7 @@ Get ready to acquire some seriously marketable programming skills! You can't con
 							</item>
 					<item>
 		<title><![CDATA[Custom Styles]]></title>
-		<link>https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/wp-global-styles-buddyx/</link>
+		<link>https://lms-demos.buddyxtheme.com/learnpress/wp-global-styles-buddyx/</link>
 		<pubDate>Mon, 11 Sep 2023 05:32:00 +0000</pubDate>
 		<dc:creator><![CDATA[wbcomteam]]></dc:creator>
 		<guid isPermaLink="false">https://lms-demos.buddyxtheme.com/learnpress/2023/09/11/wp-global-styles-buddyx/</guid>
