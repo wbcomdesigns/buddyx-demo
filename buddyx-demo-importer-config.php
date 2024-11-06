@@ -128,7 +128,7 @@ function bdi_ocdi_import_files( ) {
 		'local_import_widget_file'     	=> BDI_PLUGIN_PATH . '/demos/buddyx/learnpress/widgets.json',
 		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/learnpress/customizer.dat',
 		'local_import_redux'            => [],
-		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/buddyx-learnpress-demo.jpg',
+		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2023/01/BuddyX-With-LearnPress.png',
 		'import_notice'              	=> '',
 		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/learnpress/',
 		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'learnpress', 'wbcom-essential' ],
