@@ -216,7 +216,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
 				'slug'     => 'wbcom-essential',
-				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.8.0/wbcom-essential.zip',
+				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.9.0/wbcom-essential.zip',
 				'required' => true,
 			);
 		}
