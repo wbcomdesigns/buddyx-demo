@@ -7,7 +7,7 @@
  * Author: Wbcom Designs
  * Author URI: https://wbcomdesigns.com/
  * Requires at least: 4.0
- * Tested up to: 5.3.2
+ * Tested up to: 6.7.1
  *
  * Text Domain: buddyx-demo-Importer
  * Domain Path: /i18n/languages/
