@@ -185,3 +185,19 @@ function buddyx_demo_reactions_required_theme_admin_notice() {
 		unset( $_GET['activate'] );
 	}
 }
+
+/**
+ * Register the stylesheets for the admin area.
+ */
+function admin_enqueue_scripts() {
+	$plugin_version = '3.0.0';  // Use the version from your plugin's header.
+
+	wp_enqueue_style(
+		'buddyx-demo',
+		plugin_dir_url( __FILE__ ) . 'assets/css/buddyx-demo.css',
+		array(),
+		$plugin_version
+	);
+}
+
+add_action( 'admin_enqueue_scripts', 'admin_enqueue_scripts' );
