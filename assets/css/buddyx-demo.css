@@ -5,3 +5,25 @@
 .ocdi__content-container-content .ocdi-install-plugins-content-header .notice p {
     color: #f44336;
 }
+
+@media screen and (max-width: 992px) {
+    .ocdi__content-container-content--main {
+        margin-right: 0;
+    }
+
+    .ocdi__content-container-content {
+        -ms-flex-flow: wrap;
+        flex-flow: wrap;
+        gap: 30px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .ocdi__content-container-content--main {
+        width: 100%;
+    }
+}
