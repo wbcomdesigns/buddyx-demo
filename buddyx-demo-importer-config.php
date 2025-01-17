@@ -214,37 +214,37 @@ function bdi_ocdi_register_plugins( $plugins ) {
 		'slug'     => 'classic-widgets',
 		'required' => true,		
 	);
-	
+
 	// Check if user is on the theme recommeneded plugins step and a demo was selected.
-	if ( ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) || ( isset($_POST['slug']) && $_POST['slug'] != '' ) ) {
- 
+	if ( ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) || ( isset( $_POST['slug'] ) && $_POST['slug'] != '' ) ) {
+
 		// Adding one additional plugin for the first demo import ('import' number = 0).
 		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '7' ) ) {
-		  
+
 			$theme_plugins[] = array(
 				'name'     => 'BuddyPress',
 				'slug'     => 'buddypress',
 				'required' => true,
-				
+
 			);
 		}
-		
-		if (  isset( $_GET['import'] ) &&  $_GET['import'] === '2'   ) {
+
+		if ( isset( $_GET['import'] ) && $_GET['import'] === '2' ) {
 			$theme_plugins[] = array(
 				'name'     => 'LearnDash LMS',
-				'slug'     => 'sfwd-lms',				
+				'slug'     => 'sfwd-lms',
 				'required' => true,
 			);
-			
+
 			$theme_plugins[] = array(
 				'name'     => 'LearnDash LMS - Course Grid',
-				'slug'     => 'learndash-course-grid',				
+				'slug'     => 'learndash-course-grid',
 				'required' => true,
 			);
 		}
-		
-		if ( ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5' ) )  || ( isset($_POST['slug']) && $_POST['slug'] === 'wbcom-essential' )  ) {
-		  
+
+		if ( ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5' ) ) || ( isset( $_POST['slug'] ) && $_POST['slug'] === 'wbcom-essential' ) ) {
+
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
 				'slug'     => 'wbcom-essential',
@@ -252,9 +252,9 @@ function bdi_ocdi_register_plugins( $plugins ) {
 				'required' => true,
 			);
 		}
-		
-		if ( ( isset( $_GET['import'] ) &&  $_GET['import'] === '1' ) || ( isset($_POST['slug']) && $_POST['slug'] === 'buddyboss-platform' )  ) {
-		  
+
+		if ( ( isset( $_GET['import'] ) && $_GET['import'] === '1' ) || ( isset( $_POST['slug'] ) && $_POST['slug'] === 'buddyboss-platform' ) ) {
+
 			$theme_plugins[] = array(
 				'name'     => 'BuddyBoss Platform',
 				'slug'     => 'buddyboss-platform',
@@ -262,9 +262,9 @@ function bdi_ocdi_register_plugins( $plugins ) {
 				'required' => true,
 			);
 		}
-		
+
 		if ( isset( $_GET['import'] ) && $_GET['import'] === '3' ) {
-		  
+
 			$theme_plugins[] = array(
 				'name'     => 'ElementsKit Lite',
 				'slug'     => 'elementskit-lite',
@@ -276,56 +276,62 @@ function bdi_ocdi_register_plugins( $plugins ) {
 				'required' => true,
 			);
 		}
-		
+
 		if ( isset( $_GET['import'] ) && $_GET['import'] === '4' ) {
-		  
+
 			$theme_plugins[] = array(
 				'name'     => 'LearnPress',
 				'slug'     => 'learnpress',
 				'required' => true,
 			);
 		}
-		
+
 		if ( isset( $_GET['import'] ) && $_GET['import'] === '5' ) {
-		  
+
 			$theme_plugins[] = array(
 				'name'     => 'Tutor LMS',
 				'slug'     => 'tutor',
 				'required' => true,
 			);
 		}
-		
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '6' || $_GET['import'] === '7' ) ) {
-		  
+
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '7' ) ) {
+
+			$theme_plugins[] = array(
+				'name'     => 'WooCommerce',
+				'slug'     => 'woocommerce',
+				'required' => false,
+			);
+		}
+
+		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '6' ) ) {
+
 			$theme_plugins[] = array(
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'required' => true,
 			);
 		}
-		
+
 		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '6' ) ) {
-		  
+
 			$theme_plugins[] = array(
 				'name'     => 'Dokan',
 				'slug'     => 'dokan-lite',
 				'required' => true,
 			);
 		}
-		
+
 		if ( isset( $_GET['import'] ) && $_GET['import'] === '7' ) {
-		  
+
 			$theme_plugins[] = array(
 				'name'     => 'The Events Calendar',
 				'slug'     => 'the-events-calendar',
 				'required' => true,
 			);
 		}
-		
-		
-   
 	}
- 
+
 	return $theme_plugins;
 }
 add_filter( 'ocdi/register_plugins', 'bdi_ocdi_register_plugins' );
