@@ -201,3 +201,40 @@ function admin_enqueue_scripts() {
 }
 
 add_action( 'admin_enqueue_scripts', 'admin_enqueue_scripts' );
+
+
+
+add_action( 'admin_menu', 'buddyx_demo_add_admin_menu' );
+function buddyx_demo_add_admin_menu() {
+	add_submenu_page(
+		'themes.php',
+		'Delete Demo Data',
+		'Delete Demo Data',
+		'manage_options',
+		'buddyx-demo-delete-data',
+		'buddyx_demo_data_delete' 
+	);
+}
+
+function buddyx_demo_data_delete() {
+	if ( ! empty( $_POST['buddyx-admin-clear'] ) ) {
+		if ( class_exists( 'buddypress' ) ) {
+			buddyx_bp_clear_db();
+		}
+		buddyx_demo_clear_db();
+		echo '<div id="message" class="updated fade"><p>' . esc_html__( 'Everything created by this plugin was successfully deleted.', 'buddyx-demo-Importer' ) . '</p></div>';
+	}
+	?>
+	<div class="wrap" id="buddyx-default-data-page">
+		<h1><?php esc_html_e( 'Delete BuddyX Default Data', 'buddyx-demo-Importer' ); ?></h1>
+		<form action="" method="post" id="buddyx-admin-form">
+
+			<p class="submit">
+
+				<input class="button" type="submit" name="buddyx-admin-clear" id="buddyx-admin-clear" value="<?php esc_attr_e( 'Clear BuddyX Default Data', 'buddyx-demo-Importer' ); ?>" />
+			</p>
+			<?php wp_nonce_field( 'buddyx-admin' ); ?>
+		</form>
+	</div>
+	<?php
+}
