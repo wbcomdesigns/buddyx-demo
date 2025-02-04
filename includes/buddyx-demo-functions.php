@@ -67,9 +67,8 @@ function buddyx_demo_clear_db() {
 	}
 
 	// Delete Nav Menu items
-	$args['post_type'] = 'nav_menu_item';
-	$buddyx_demo_post  = new WP_Query( $args );
-
+	$args['post_type'] = ['nav_menu_item','bp-email','elementor_library','wp_navigation', 'wp_global_styles'];
+	$buddyx_demo_post  = new WP_Query( $args );	
 	if ( $buddyx_demo_post->have_posts() ) {
 		while ( $buddyx_demo_post->have_posts() ) {
 			$buddyx_demo_post->the_post();

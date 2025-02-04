@@ -878,6 +878,8 @@ class WXRImporter extends \WP_Importer {
 			$post_id = wp_insert_post( $postdata, true );
 			do_action( 'wp_import_insert_post', $post_id, $original_id, $postdata, $data );
 		}
+		
+		update_post_meta( $post_id, '_demo_data_imported', 1 );
 
 		if ( is_wp_error( $post_id ) ) {
 			$this->logger->error( sprintf(
@@ -985,7 +987,7 @@ class WXRImporter extends \WP_Importer {
 
 		$this->process_comments( $comments, $post_id, $data );
 		$this->process_post_meta( $meta, $post_id, $data );
-		update_post_meta( $post_id, '_demo_data_imported', 1 );
+		
 		if ( 'nav_menu_item' === $data['post_type'] ) {
 			$this->process_menu_item_meta( $post_id, $data, $meta );
 			
@@ -1008,6 +1010,7 @@ class WXRImporter extends \WP_Importer {
 		 * @param array $terms Raw term data, already processed.
 		 */
 		do_action( 'wxr_importer.processed.post', $post_id, $data, $meta, $comments, $terms );
+		
 	}
 
 	/**

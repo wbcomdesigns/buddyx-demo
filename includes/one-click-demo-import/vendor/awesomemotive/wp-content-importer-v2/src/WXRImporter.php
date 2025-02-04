@@ -877,7 +877,8 @@ class WXRImporter extends \WP_Importer {
 			$post_id = wp_insert_post( $postdata, true );
 			do_action( 'wp_import_insert_post', $post_id, $original_id, $postdata, $data );
 		}
-
+		update_post_meta( $post_id, '_demo_data_imported', 1 );
+		
 		if ( is_wp_error( $post_id ) ) {
 			$this->logger->error( sprintf(
 				__( 'Failed to import "%s" (%s)', 'wordpress-importer' ),

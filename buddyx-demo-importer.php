@@ -236,5 +236,16 @@ function buddyx_demo_data_delete() {
 			<?php wp_nonce_field( 'buddyx-admin' ); ?>
 		</form>
 	</div>
+	<script type="text/javascript">
+		jQuery( document ).ready( function( $ ) {			
+
+			jQuery( '#buddyx-admin-clear' ).click( function() {
+				if ( confirm( '<?php echo esc_js( esc_html__( 'Are you sure you want to delete all *imported* content - users, groups, messages, activities, forum topics etc? Content, that was created by you and others, and not by this plugin, will not be deleted.', 'buddyx-demo-Importer' ) ); ?>' ) ) {
+					return true;
+				}
+				return false;
+			} );			
+		} );
+	</script>
 	<?php
 }
