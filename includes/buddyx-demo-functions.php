@@ -66,8 +66,8 @@ function buddyx_demo_clear_db() {
 		wp_reset_postdata(); // Reset the post data to avoid conflicts
 	}
 
-	// Delete Nav Menu items
-	$args['post_type'] = ['nav_menu_item','bp-email','elementor_library','wp_navigation', 'wp_global_styles'];
+	// Delete Nav Menu items	
+	$args['post_type'] = ['nav_menu_item','bp-email','wp_navigation', 'wp_global_styles'];
 	$buddyx_demo_post  = new WP_Query( $args );	
 	if ( $buddyx_demo_post->have_posts() ) {
 		while ( $buddyx_demo_post->have_posts() ) {
