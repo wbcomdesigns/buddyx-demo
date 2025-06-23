@@ -116,13 +116,12 @@ function bdi_ocdi_import_files( ) {
 		'local_import_customizer_file' 	=> BDI_PLUGIN_PATH . '/demos/buddyx/learndash/customizer.dat',
 		'local_import_redux'            => [],
 		'import_preview_image_url'   	=> 'https://buddyxtheme.com/wp-content/uploads/2020/12/Buddyx-learndash-demo.jpg',
-		'import_notice'              	=> __( 'Please install and activate LearnDash LMS and LearnDash LMS - Course Grid plugin before import demo.', 'buddyx-demo-Importer' ),
+		'import_notice'              	=> __( 'Please install and activate LearnDash LMS plugin before import demo.', 'buddyx-demo-Importer' ),
 		
 		'preview_url'                	=> 'https://lms-demos.buddyxtheme.com/learndash',
 		'import_plugins'             	=> [ 'elementor', 'classic-widgets', 'kirki', 'buddyboss-platform', 'woocommerce', 'wbcom-essential' ],		
 		'required_plugins'  			=> [
 												'sfwd-lms/sfwd_lms.php' => 'LearnDash LMS',
-												'learndash-course-grid/learndash_course_grid.php' => 'LearnDash LMS - Course Grid',
 											],
     ],
 	
@@ -233,12 +232,6 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			$theme_plugins[] = array(
 				'name'     => 'LearnDash LMS',
 				'slug'     => 'sfwd-lms',
-				'required' => true,
-			);
-
-			$theme_plugins[] = array(
-				'name'     => 'LearnDash LMS - Course Grid',
-				'slug'     => 'learndash-course-grid',
 				'required' => true,
 			);
 		}
@@ -493,8 +486,6 @@ function bdi_import_buddypress_demo_data() {
 		);
 		buddyx_bp_update_import( 'groups', 'members' );
 	}
-
-	
 
 	if ( bp_is_active( 'activity' ) && bp_is_active( 'groups' ) && ! buddyx_bp_is_imported( 'groups', 'activity' ) ) {
 		$g_activity             = buddyx_bp_import_groups_activity();
