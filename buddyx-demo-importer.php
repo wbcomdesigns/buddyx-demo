@@ -187,9 +187,11 @@ function buddyx_demo_bp_default_components( $components ) {
  * @return void
  */
 require plugin_dir_path( __FILE__ ) . 'plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	esc_url( 'https://demos.wbcomdesigns.com/exporter/free-plugins/buddyx-demo-importer.json' ),
-	__FILE__,
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+	'https://demos.wbcomdesigns.com/exporter/free-plugins/buddyx-demo-importer.json',
+	__FILE__, // Full path to the main plugin file
 	'buddyx-demo-importer'
 );
 
