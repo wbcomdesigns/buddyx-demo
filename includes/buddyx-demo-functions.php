@@ -1,17 +1,32 @@
 <?php
+/**
+ * BuddyX Demo Importer Functions
+ *
+ * @package BuddyX_Demo_Importer
+ * @since 3.0.0
+ */
 
 /**
- * Get plugin admin area root page: settings.php for WPMS and tool.php for WP.
+ * Get plugin admin area root page
  *
- * @return string
+ * Returns settings.php for WordPress Multisite and tools.php for single site
+ *
+ * @since 3.0.0
+ * @return string Admin page slug
  */
 function buddyx_bp_get_root_admin_page() {
-
 	return is_multisite() ? 'settings.php' : 'tools.php';
 }
 
 /**
- * Delete all imported information.
+ * Delete all BuddyPress imported data
+ *
+ * Removes all users, groups, xProfile fields and import records
+ * that were created by the demo importer
+ *
+ * @since 3.0.0
+ * @global object $wpdb WordPress database object
+ * @return void
  */
 function buddyx_bp_clear_db() {
 	global $wpdb;
@@ -46,11 +61,21 @@ function buddyx_bp_clear_db() {
 	buddyx_bp_delete_import_records();
 }
 
+/**
+ * Delete all WordPress demo content
+ *
+ * Removes all posts, pages, and navigation items that were
+ * marked as demo content during import
+ *
+ * @since 3.0.0
+ * @return void
+ */
 function buddyx_demo_clear_db() {
 	$args = array(
 		'post_type'      => 'any',
 		'posts_per_page' => -1,
 		'post_status'    => 'any',
+		'fields'         => 'ids',
 		'order'          => 'ASC',
 		'meta_key'       => '_demo_data_imported',
 		'meta_value'     => 1,
@@ -59,32 +84,31 @@ function buddyx_demo_clear_db() {
 	$buddyx_demo_post = new WP_Query( $args );
 
 	if ( $buddyx_demo_post->have_posts() ) {
-		while ( $buddyx_demo_post->have_posts() ) {
-			$buddyx_demo_post->the_post();
-			wp_delete_post( get_the_ID(), true );
+		foreach ( $buddyx_demo_post->posts as $post_id ) {
+			wp_delete_post( $post_id, true );
 		}
-		wp_reset_postdata(); // Reset the post data to avoid conflicts
 	}
 
 	// Delete Nav Menu items	
-	$args['post_type'] = ['nav_menu_item','bp-email','wp_navigation', 'wp_global_styles'];
-	$buddyx_demo_post  = new WP_Query( $args );	
+	$args['post_type'] = array( 'nav_menu_item', 'bp-email', 'wp_navigation', 'wp_global_styles' );
+	$buddyx_demo_post  = new WP_Query( $args );
+	
 	if ( $buddyx_demo_post->have_posts() ) {
-		while ( $buddyx_demo_post->have_posts() ) {
-			$buddyx_demo_post->the_post();
-			wp_delete_post( get_the_ID(), true );
+		foreach ( $buddyx_demo_post->posts as $post_id ) {
+			wp_delete_post( $post_id, true );
 		}
-		wp_reset_postdata(); // Reset the post data to avoid conflicts
 	}
 }
 
 /**
- * Fix the date issue, when all joined_group events took place at the same time.
+ * Fix date for group join activities
  *
- * @param array $args Arguments that are passed to bp_activity_add().
+ * Modifies the recorded time for joined_group activities to use
+ * a random date instead of current time
  *
- * @return array
- * @throws \Exception
+ * @since 3.0.0
+ * @param array $args Arguments passed to bp_activity_add()
+ * @return array Modified arguments with random date
  */
 function buddyx_bp_groups_join_group_date_fix( $args ) {
 	if ( isset( $args['type'], $args['component'] ) && 
@@ -98,25 +122,29 @@ function buddyx_bp_groups_join_group_date_fix( $args ) {
 }
 
 /**
- * Fix the date issue, when all friends connections are done at the same time.
+ * Fix date for friend connections
  *
- * @param string $current_time Default BuddyPress current timestamp.
+ * Returns a random timestamp for friend connections instead of current time
  *
- * @return string
- * @throws \Exception
+ * @since 3.0.0
+ * @param string $current_time Default BuddyPress current timestamp
+ * @return int Random timestamp
  */
 function buddyx_bp_friends_add_friend_date_fix( $current_time ) {
-
 	return strtotime( buddyx_bp_get_random_date( 43 ) );
 }
 
 /**
- * Get the array (or a string) of group IDs.
+ * Get random group IDs from imported groups
  *
- * @param int    $count  If you need all, use 0.
- * @param string $output What to return: 'array' or 'string'. If string - comma separated.
+ * Returns an array or comma-separated string of random group IDs
+ * from groups that were imported by the demo importer
  *
- * @return array|string Default is array.
+ * @since 3.0.0
+ * @global object $wpdb WordPress database object
+ * @param int    $count  Number of groups to return. Use 0 for all groups
+ * @param string $output Return format: 'array' or 'string'
+ * @return array|string Array of group IDs or comma-separated string
  */
 function buddyx_bp_get_random_groups_ids( $count = 1, $output = 'array' ) {
 	$groups_arr = (array) bp_get_option( 'buddyx_bp_imported_group_ids', array() );
@@ -131,8 +159,14 @@ function buddyx_bp_get_random_groups_ids( $count = 1, $output = 'array' ) {
 		global $wpdb;
 		$bp = buddypress();
 
-		$limit = $count > 0 ? 'LIMIT ' . intval( $count ) : '';
-		$groups = $wpdb->get_col( "SELECT id FROM {$bp->groups->table_name} ORDER BY rand() {$limit}" );
+		if ( $count > 0 ) {
+			$groups = $wpdb->get_col( $wpdb->prepare( 
+				"SELECT id FROM {$bp->groups->table_name} ORDER BY rand() LIMIT %d", 
+				$count 
+			) );
+		} else {
+			$groups = $wpdb->get_col( "SELECT id FROM {$bp->groups->table_name} ORDER BY rand()" );
+		}
 	}
 
 	$groups = array_map( 'intval', $groups );
@@ -140,14 +174,16 @@ function buddyx_bp_get_random_groups_ids( $count = 1, $output = 'array' ) {
 	return $output === 'string' ? implode( ',', $groups ) : $groups;
 }
 
-
 /**
- * Get the array (or a string) of user IDs.
+ * Get random user IDs from imported users
  *
- * @param int    $count  If you need all, use 0.
- * @param string $output What to return: 'array' or 'string'. If string - comma separated.
+ * Returns an array or comma-separated string of random user IDs
+ * from users that were imported by the demo importer
  *
- * @return array|string Default is array.
+ * @since 3.0.0
+ * @param int    $count  Number of users to return. Use 0 for all users
+ * @param string $output Return format: 'array' or 'string'
+ * @return array|string Array of user IDs or comma-separated string
  */
 function buddyx_bp_get_random_users_ids( $count = 1, $output = 'array' ) {
 	$users_arr = (array) bp_get_option( 'buddyx_bp_imported_user_ids', array() );
@@ -169,15 +205,16 @@ function buddyx_bp_get_random_users_ids( $count = 1, $output = 'array' ) {
 	return $output === 'string' ? implode( ',', $users ) : $users;
 }
 
-
 /**
- * Get a random date between some days in the past.
- * If [30;5] is specified - that means a random date between 30 and 5 days from now.
+ * Generate a random date between specified days in the past
  *
- * @param int $days_from
- * @param int $days_to
+ * Creates a random date between $days_from and $days_to days ago.
+ * For example, [30, 5] returns a random date between 30 and 5 days ago
  *
- * @return string Random time in 'Y-m-d h:i:s' format.
+ * @since 3.0.0
+ * @param int $days_from Maximum days in the past (default 30)
+ * @param int $days_to   Minimum days in the past (default 0)
+ * @return string Random date in 'Y-m-d H:i:s' format
  */
 function buddyx_bp_get_random_date( $days_from = 30, $days_to = 0 ) {
 	// Ensure $days_from is always greater than $days_to
@@ -190,33 +227,33 @@ function buddyx_bp_get_random_date( $days_from = 30, $days_to = 0 ) {
 		$date_to   = new DateTime( 'now - ' . intval( $days_to ) . ' days' );
 
 		$timestamp = wp_rand( $date_from->getTimestamp(), $date_to->getTimestamp() );
-		$date = date( 'Y-m-d H:i:s', $timestamp );
+		$date = wp_date( 'Y-m-d H:i:s', $timestamp );
 	} catch ( Exception $e ) {
-		$date = date( 'Y-m-d H:i:s' );
+		$date = current_time( 'mysql' );
 	}
 
 	return $date;
 }
 
-
 /**
- * Get the current timestamp, using current blog time settings.
+ * Get current timestamp using blog timezone settings
  *
- * @return int
+ * @since 3.0.0
+ * @return int Current timestamp
  */
 function buddyx_bp_get_time() {
-
 	return (int) current_time( 'timestamp' );
 }
 
-
 /**
- * Check whether something was imported or not.
+ * Check if specific content has been imported
  *
- * @param string $group  Possible values: users, groups
- * @param string $import What exactly was imported
+ * Checks whether a specific type of content (users, groups) has been imported
  *
- * @return bool
+ * @since 3.0.0
+ * @param string $group  Content group: 'users' or 'groups'
+ * @param string $import Specific import type within the group
+ * @return bool True if imported, false otherwise
  */
 function buddyx_bp_is_imported( $group, $import ) {
 	$group  = sanitize_key( $group );
@@ -229,12 +266,16 @@ function buddyx_bp_is_imported( $group, $import ) {
 	return array_key_exists( $import, (array) bp_get_option( 'buddyx_bp_import_' . $group ) );
 }
 
-
 /**
- * Display a disabled attribute for inputs of the particular value was already imported.
+ * Display disabled attribute for already imported items
  *
- * @param string $group
- * @param string $import
+ * Outputs HTML attributes for form inputs to disable and check
+ * items that have already been imported
+ *
+ * @since 3.0.0
+ * @param string $group  Content group
+ * @param string $import Import type
+ * @return void
  */
 function buddyx_bp_imported_disabled( $group, $import ) {
 	$group  = sanitize_key( $group );
@@ -243,14 +284,15 @@ function buddyx_bp_imported_disabled( $group, $import ) {
 	echo buddyx_bp_is_imported( $group, $import ) ? 'disabled="disabled" checked="checked"' : 'checked="checked"';
 }
 
-
 /**
- * Save when the importing was done.
+ * Save import timestamp
  *
- * @param string $group
- * @param string $import
+ * Records when a specific type of content was imported
  *
- * @return bool
+ * @since 3.0.0
+ * @param string $group  Content group
+ * @param string $import Import type
+ * @return bool True on success, false on failure
  */
 function buddyx_bp_update_import( $group, $import ) {
 	$group  = sanitize_key( $group );
@@ -262,9 +304,13 @@ function buddyx_bp_update_import( $group, $import ) {
 	return bp_update_option( 'buddyx_bp_import_' . $group, $values );
 }
 
-
 /**
- * Remove all imported ids and the indication, that importing was done.
+ * Remove all import tracking records
+ *
+ * Deletes all options that track what content has been imported
+ *
+ * @since 3.0.0
+ * @return void
  */
 function buddyx_bp_delete_import_records() {
 	bp_delete_option( 'buddyx_bp_import_users' );
@@ -275,4 +321,3 @@ function buddyx_bp_delete_import_records() {
 	
 	bp_delete_option( 'buddyx_bp_imported_user_xprofile_ids' );
 }
-

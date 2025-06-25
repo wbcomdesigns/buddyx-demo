@@ -1,20 +1,30 @@
 <?php
 /**
- * Merlin WP configuration file.
+ * BuddyX Demo Importer Configuration
  *
- * @package   Merlin WP
- * @version   @@pkg.version
- * @link      https://merlinwp.com/
- * @author    Rich Tabor, from ThemeBeans.com & the team at ProteusThemes.com
- * @copyright Copyright (c) 2018, Merlin WP of Inventionn LLC
+ * Handles One Click Demo Import configuration and setup
+ *
+ * @package   BuddyX_Demo_Importer
+ * @version   3.0.0
+ * @link      https://wbcomdesigns.com/
+ * @author    Wbcom Designs
+ * @copyright Copyright (c) 2024, Wbcom Designs
  * @license   Licensed GPLv3 for Open Source Use
  */
 
-/* remove Admin init function on Theme Setup wizard start */
+/**
+ * Remove admin init functions during demo import
+ *
+ * Prevents plugin activation redirects and setup wizards from interfering
+ * with the demo import process
+ *
+ * @since 3.0.0
+ * @return void
+ */
 add_action( 'admin_init', 'bdi_remove_admin_init', 0 );
 function bdi_remove_admin_init() {	
 
-	if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin' && isset( $_REQUEST['slug'] ) && $_REQUEST['slug'] == 'woocommerce') {
+	if( isset( $_REQUEST['action'] ) && sanitize_text_field( $_REQUEST['action'] ) == 'ocdi_install_plugin' && isset( $_REQUEST['slug'] ) && sanitize_text_field( $_REQUEST['slug'] ) == 'woocommerce') {
 		update_option( 'woocommerce_onboarding_profile', [ 'completed'=> true, 'skipped' => true ]);
 		// Remove the redirect transient set by WooCommerce after activation
 		if ( get_transient( '_wc_activation_redirect' ) ) {
@@ -22,21 +32,21 @@ function bdi_remove_admin_init() {
 		}
 	}
 	/* Pass activate multi plugin in get request*/
-	if( isset( $_REQUEST['action'] ) && ( $_REQUEST['action'] == 'ocdi_install_plugin' || $_REQUEST['action'] == 'ocdi_import_demo_data' ) ) {
+	if( isset( $_REQUEST['action'] ) && ( sanitize_text_field( $_REQUEST['action'] ) == 'ocdi_install_plugin' || sanitize_text_field( $_REQUEST['action'] ) == 'ocdi_import_demo_data' ) ) {
 		$_GET['activate-multi'] = true;
-		if( isset( $_REQUEST['slug'] ) && $_REQUEST['slug'] == 'dokan-lite' ) {
+		if( isset( $_REQUEST['slug'] ) && sanitize_text_field( $_REQUEST['slug'] ) == 'dokan-lite' ) {
 			update_option( 'dokan_theme_version', true );
 		}
 	}
 	
 	if ( ( isset( $_GET['page'] ) 
 		&& ( 
-			$_GET['page'] == 'buddyx-sample-demo-import' 
-			|| $_GET['page'] == 'tgmpa-install-plugins' 
-			|| $_GET['page'] == 'one-click-demo-import' 
+			sanitize_text_field( $_GET['page'] ) == 'buddyx-sample-demo-import' 
+			|| sanitize_text_field( $_GET['page'] ) == 'tgmpa-install-plugins' 
+			|| sanitize_text_field( $_GET['page'] ) == 'one-click-demo-import' 
 			) )
 			
-			|| ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin')
+			|| ( isset( $_REQUEST['action'] ) && sanitize_text_field( $_REQUEST['action'] ) == 'ocdi_install_plugin')
 	
 		) {
 		// Remove the redirect transient set by WooCommerce after activation
@@ -58,23 +68,33 @@ function bdi_remove_admin_init() {
 	}
 }
 
+/**
+ * Disable LearnDash setup wizard during import
+ *
+ * @since 3.0.0
+ * @return void
+ */
 function bdi_ocdi_lms_redirect_flag() {
 	if ( ( isset( $_GET['page'] ) 
 		&& ( 
-			$_GET['page'] == 'buddyx-sample-demo-import' 
-			|| $_GET['page'] == 'tgmpa-install-plugins' 
-			|| $_GET['page'] == 'one-click-demo-import' 
+			sanitize_text_field( $_GET['page'] ) == 'buddyx-sample-demo-import' 
+			|| sanitize_text_field( $_GET['page'] ) == 'tgmpa-install-plugins' 
+			|| sanitize_text_field( $_GET['page'] ) == 'one-click-demo-import' 
 			) )
 			
-			|| ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'ocdi_install_plugin')
+			|| ( isset( $_REQUEST['action'] ) && sanitize_text_field( $_REQUEST['action'] ) == 'ocdi_install_plugin')
 	
 		) {
 		add_filter( 'learndash_setup_wizard_should_display', '__return_false', 99 );		
 	}
 }
 add_action( 'learndash_activated', 'bdi_ocdi_lms_redirect_flag',0 );
-/*
- *One Click Demo Import
+
+/**
+ * Define available demo imports
+ *
+ * @since 3.0.0
+ * @return array Array of demo import configurations
  */
 function bdi_ocdi_import_files( ) {	
   return [
@@ -194,7 +214,15 @@ function bdi_ocdi_import_files( ) {
 }
 add_filter( 'ocdi/import_files', 'bdi_ocdi_import_files' );
 
-
+/**
+ * Register required plugins for each demo
+ *
+ * Dynamically registers plugins based on selected demo import
+ *
+ * @since 3.0.0
+ * @param array $plugins Array of plugins to register
+ * @return array Modified array of plugins
+ */
 function bdi_ocdi_register_plugins( $plugins ) {
  
 	// Required: List of plugins used by all theme demos.  
@@ -215,10 +243,10 @@ function bdi_ocdi_register_plugins( $plugins ) {
 	);
 
 	// Check if user is on the theme recommeneded plugins step and a demo was selected.
-	if ( ( isset( $_GET['step'] ) && $_GET['step'] === 'import' && isset( $_GET['import'] ) ) || ( isset( $_POST['slug'] ) && $_POST['slug'] != '' ) ) {
+	if ( ( isset( $_GET['step'] ) && sanitize_text_field( $_GET['step'] ) === 'import' && isset( $_GET['import'] ) ) || ( isset( $_POST['slug'] ) && sanitize_text_field( $_POST['slug'] ) != '' ) ) {
 
 		// Adding one additional plugin for the first demo import ('import' number = 0).
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '7' ) ) {
+		if ( isset( $_GET['import'] ) && ( sanitize_text_field( $_GET['import'] ) === '0' || sanitize_text_field( $_GET['import'] ) === '7' ) ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'BuddyPress',
@@ -228,7 +256,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && $_GET['import'] === '2' ) {
+		if ( isset( $_GET['import'] ) && sanitize_text_field( $_GET['import'] ) === '2' ) {
 			$theme_plugins[] = array(
 				'name'     => 'LearnDash LMS',
 				'slug'     => 'sfwd-lms',
@@ -236,7 +264,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '2' || $_GET['import'] === '4' || $_GET['import'] === '5' ) ) || ( isset( $_POST['slug'] ) && $_POST['slug'] === 'wbcom-essential' ) ) {
+		if ( ( isset( $_GET['import'] ) && in_array( sanitize_text_field( $_GET['import'] ), array( '0', '1', '2', '4', '5' ) ) ) || ( isset( $_POST['slug'] ) && sanitize_text_field( $_POST['slug'] ) === 'wbcom-essential' ) ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
@@ -246,7 +274,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( ( isset( $_GET['import'] ) && $_GET['import'] === '1' ) || ( isset( $_POST['slug'] ) && $_POST['slug'] === 'buddyboss-platform' ) ) {
+		if ( ( isset( $_GET['import'] ) && sanitize_text_field( $_GET['import'] ) === '1' ) || ( isset( $_POST['slug'] ) && sanitize_text_field( $_POST['slug'] ) === 'buddyboss-platform' ) ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'BuddyBoss Platform',
@@ -256,7 +284,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && $_GET['import'] === '3' ) {
+		if ( isset( $_GET['import'] ) && sanitize_text_field( $_GET['import'] ) === '3' ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'ElementsKit Lite',
@@ -270,7 +298,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && $_GET['import'] === '4' ) {
+		if ( isset( $_GET['import'] ) && sanitize_text_field( $_GET['import'] ) === '4' ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'LearnPress',
@@ -279,7 +307,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && $_GET['import'] === '5' ) {
+		if ( isset( $_GET['import'] ) && sanitize_text_field( $_GET['import'] ) === '5' ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'Tutor LMS',
@@ -288,7 +316,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '0' || $_GET['import'] === '1' || $_GET['import'] === '7' ) ) {
+		if ( isset( $_GET['import'] ) && in_array( sanitize_text_field( $_GET['import'] ), array( '0', '1', '7' ) ) ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'WooCommerce',
@@ -297,7 +325,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '6' ) ) {
+		if ( isset( $_GET['import'] ) && ( sanitize_text_field( $_GET['import'] ) === '6' ) ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'WooCommerce',
@@ -306,7 +334,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && ( $_GET['import'] === '6' ) ) {
+		if ( isset( $_GET['import'] ) && ( sanitize_text_field( $_GET['import'] ) === '6' ) ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'Dokan',
@@ -315,7 +343,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			);
 		}
 
-		if ( isset( $_GET['import'] ) && $_GET['import'] === '7' ) {
+		if ( isset( $_GET['import'] ) && sanitize_text_field( $_GET['import'] ) === '7' ) {
 
 			$theme_plugins[] = array(
 				'name'     => 'The Events Calendar',
@@ -330,7 +358,14 @@ function bdi_ocdi_register_plugins( $plugins ) {
 add_filter( 'ocdi/register_plugins', 'bdi_ocdi_register_plugins' );
 
 /**
- * After import setup custom code.
+ * Setup WordPress after demo import
+ *
+ * Sets up homepage, blog page, menus, and fixes demo URLs
+ *
+ * @since 3.0.0
+ * @global object $wpdb WordPress database object
+ * @param array $import_files Information about imported files
+ * @return void
  */
 function bdi_ocdi_after_import_setup( $import_files ) {
 	// Set static homepage.
@@ -384,15 +419,20 @@ function bdi_ocdi_after_import_setup( $import_files ) {
 	/*
 	 * Update Custom URL in menu
 	 */
-	//update_option('odi_import_files', $import_files);		
 	$preview_url = ( isset($import_files['preview_url']) && $import_files['preview_url'] != '' ) ? $import_files['preview_url'] : '';
 	
 	if( $preview_url != '' ) {
 		
-		$query 			= "Select * from {$wpdb->prefix}postmeta where meta_key='_menu_item_url'";
-		$results 		= $wpdb->get_results( $query );
+		$results = $wpdb->get_results( 
+			$wpdb->prepare( 
+				"SELECT * FROM {$wpdb->prefix}postmeta WHERE meta_key = %s",
+				'_menu_item_url'
+			)
+		);
+		
 		$find_string 	= $preview_url;
 		$replace_string = trailingslashit( get_site_url() );
+		
 		if( !empty( $results )) {
 			foreach( $results as $res ) {		
 				if( trim( $res->meta_value ) != '' ) {
@@ -405,8 +445,8 @@ function bdi_ocdi_after_import_setup( $import_files ) {
 						"{$wpdb->prefix}postmeta",       // Table name
 						$data,        // Data array (column => value)
 						$where,       // Where clause array (column => value)
-						$format = null,  // Optional data format array (e.g., ['%s', '%d'])
-						$where_format = null // Optional where format array (e.g., ['%d'])
+						$format,  // Optional data format array (e.g., ['%s', '%d'])
+						$where_format // Optional where format array (e.g., ['%d'])
 					);
 				}
 			}
@@ -416,6 +456,15 @@ function bdi_ocdi_after_import_setup( $import_files ) {
 }
 add_action( 'ocdi/after_import', 'bdi_ocdi_after_import_setup' );
 
+/**
+ * Import BuddyPress demo data after content import
+ *
+ * @since 3.0.0
+ * @param array $selected_import_files Selected import configuration
+ * @param array $import_files All import configurations
+ * @param int   $selected_index Index of selected demo
+ * @return void
+ */
 function bdi_ocdi_after_content_import_execution( $selected_import_files, $import_files, $selected_index) {
 	
 	if( $selected_index == 0 || $selected_index == 1 || $selected_index == 7 ) {
@@ -424,8 +473,16 @@ function bdi_ocdi_after_content_import_execution( $selected_import_files, $impor
 }
 add_action( 'ocdi/after_content_import_execution', 'bdi_ocdi_after_content_import_execution', 10, 3);
 
+/**
+ * Import BuddyPress demo data
+ *
+ * Imports users, profiles, friends, activities, groups and group members
+ *
+ * @since 3.0.0
+ * @return bool True on successful import
+ */
 function bdi_import_buddypress_demo_data() {
-	// Cound what we have just imported.
+	// Count what we have just imported.
 	$imported = array();
 
 	// Check nonce before we do anything.
@@ -498,12 +555,19 @@ function bdi_import_buddypress_demo_data() {
 
 	return true;
 }
+
+/**
+ * Customize plugin page title
+ *
+ * @since 3.0.0
+ * @return string HTML for custom page title
+ */
 function bdi_ocdi_plugin_page_title() {
 	ob_start(); ?>
 	<div class="ocdi__title-container">
-		<h1 class="ocdi__title-container-title"><?php esc_html_e( 'BuddyX Demo Import', 'one-click-demo-import' ); ?></h1>
+		<h1 class="ocdi__title-container-title"><?php esc_html_e( 'BuddyX Demo Import', 'buddyx-demo-Importer' ); ?></h1>
 		<a href="https://ocdi.com/user-guide/" target="_blank" rel="noopener noreferrer">
-			<img class="ocdi__title-container-icon" src="<?php echo esc_url( OCDI_URL . 'assets/images/icons/question-circle.svg' ); ?>" alt="<?php esc_attr_e( 'Questionmark icon', 'one-click-demo-import' ); ?>">
+			<img class="ocdi__title-container-icon" src="<?php echo esc_url( OCDI_URL . 'assets/images/icons/question-circle.svg' ); ?>" alt="<?php esc_attr_e( 'Questionmark icon', 'buddyx-demo-Importer' ); ?>">
 		</a>
 	</div>
 	<?php

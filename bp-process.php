@@ -1,21 +1,37 @@
 <?php
+/**
+ * BuddyPress Demo Data Import Processing
+ *
+ * @package BuddyX_Demo_Importer
+ * @since 3.0.0
+ */
 
 /**
- *  Importer engine - USERS
+ * Import demo users into BuddyPress
+ *
+ * Creates demo users with profiles and sets up their basic information
+ *
+ * @since 3.0.0
+ * @return array Array of created user IDs
  */
 function buddyx_bp_import_users() {
 
 	$users = array();
 
-	$users_data = require __DIR__ . '/demos/demo-bp-data/users.php';
+	// Check if users data file exists
+	$users_file = __DIR__ . '/demos/demo-bp-data/users.php';
+	if ( ! file_exists( $users_file ) ) {
+		return array();
+	}
+	$users_data = require $users_file;
 
 	foreach ( $users_data as $user ) {
 		$user_id = wp_insert_user(
 			array(
-				'user_login'      => $user['login'],
+				'user_login'      => sanitize_user( $user['login'] ),
 				'user_pass'       => $user['pass'],
-				'display_name'    => $user['display_name'],
-				'user_email'      => $user['email'],
+				'display_name'    => sanitize_text_field( $user['display_name'] ),
+				'user_email'      => sanitize_email( $user['email'] ),
 				'user_registered' => buddyx_bp_get_random_date( 45, 1 ),
 			)
 		);
@@ -49,9 +65,12 @@ function buddyx_bp_import_users() {
 }
 
 /**
- * Import extended profile fields.
+ * Import extended profile fields and data
  *
- * @return int
+ * Creates xProfile field groups, fields, and populates them with demo data
+ *
+ * @since 3.0.0
+ * @return int Number of profile field entries created
  */
 function buddyx_bp_import_users_profile() {
 
@@ -62,8 +81,14 @@ function buddyx_bp_import_users_profile() {
 	}
 
 	$data = array();
+	$groups = array();
 
-	$xprofile_structure = require __DIR__ . '/demos/demo-bp-data/xprofile_structure.php';
+	// Check if xprofile structure file exists
+	$xprofile_file = __DIR__ . '/demos/demo-bp-data/xprofile_structure.php';
+	if ( ! file_exists( $xprofile_file ) ) {
+		return 0;
+	}
+	$xprofile_structure = require $xprofile_file;
 
 	// Firstly, import profile groups.
 	foreach ( $xprofile_structure as $group_type => $group_data ) {
@@ -120,8 +145,14 @@ function buddyx_bp_import_users_profile() {
 		}
 	}
 
-	$xprofile_data = require __DIR__ . '/demos/demo-bp-data/xprofile_data.php';
-	$users         = buddyx_bp_get_random_users_ids( 0 );
+	// Check if xprofile data file exists
+	$xprofile_data_file = __DIR__ . '/demos/demo-bp-data/xprofile_data.php';
+	if ( ! file_exists( $xprofile_data_file ) ) {
+		return $count;
+	}
+	$xprofile_data = require $xprofile_data_file;
+	
+	$users = buddyx_bp_get_random_users_ids( 0 );
 
 	// Now import profile fields data for all fields for each user.
 	foreach ( $users as $user_id ) {
@@ -156,11 +187,13 @@ function buddyx_bp_import_users_profile() {
 	return $count;
 }
 
-
 /**
- * Import Activity - aka "status updates".
+ * Import user activity updates
  *
- * @return int Number of activity records that were inserted into the database.
+ * Creates activity stream items for imported users
+ *
+ * @since 3.0.0
+ * @return int Number of activity items created
  */
 function buddyx_bp_import_users_activity() {
 
@@ -172,8 +205,13 @@ function buddyx_bp_import_users_activity() {
 
 	$users = buddyx_bp_get_random_users_ids( 0 );
 
+	// Check if activity data file exists
+	$activity_file = __DIR__ . '/demos/demo-bp-data/activity.php';
+	if ( ! file_exists( $activity_file ) ) {
+		return $count;
+	}
 	/** @var $activity array */
-	require __DIR__ . '/demos/demo-bp-data/activity.php';
+	require $activity_file;
 
 	for ( $i = 0; $i < 75; $i ++ ) {
 		$user    = $users[ array_rand( $users ) ];
@@ -192,9 +230,12 @@ function buddyx_bp_import_users_activity() {
 }
 
 /**
- * Get random users from the DB and generate friends connections.
+ * Create friend connections between users
  *
- * @return int
+ * Randomly connects imported users as friends
+ *
+ * @since 3.0.0
+ * @return int Number of friend connections created
  */
 function buddyx_bp_import_users_friends() {
 
@@ -224,11 +265,13 @@ function buddyx_bp_import_users_friends() {
 }
 
 /**
- *  Importer engine - GROUPS
+ * Import BuddyPress groups
  *
- * @param bool|array $users Users list we want to work with. Get random if empty.
+ * Creates demo groups with various privacy settings
  *
- * @return array
+ * @since 3.0.0
+ * @param bool|array $users Optional. Array of users to use as group creators
+ * @return array Array of created group IDs
  */
 function buddyx_bp_import_groups( $users = false ) {
 
@@ -244,7 +287,12 @@ function buddyx_bp_import_groups( $users = false ) {
 		$users = get_users();
 	}
 
-	require __DIR__ . '/demos/demo-bp-data/groups.php';
+	// Check if groups data file exists
+	$groups_file = __DIR__ . '/demos/demo-bp-data/groups.php';
+	if ( ! file_exists( $groups_file ) ) {
+		return $group_ids;
+	}
+	require $groups_file;
 
 	foreach ( $groups as $group ) {
 		$creator_id = is_object( $users[ array_rand( $users ) ] ) ? $users[ array_rand( $users ) ]->ID : $users[ array_rand( $users ) ];
@@ -286,9 +334,12 @@ function buddyx_bp_import_groups( $users = false ) {
 }
 
 /**
- * Import groups activity - aka "status updates".
+ * Import group activity updates
  *
- * @return int
+ * Creates activity items within groups
+ *
+ * @since 3.0.0
+ * @return int Number of group activity items created
  */
 function buddyx_bp_import_groups_activity() {
 
@@ -301,8 +352,13 @@ function buddyx_bp_import_groups_activity() {
 	$users  = buddyx_bp_get_random_users_ids( 0 );
 	$groups = buddyx_bp_get_random_groups_ids( 0 );
 
+	// Check if activity data file exists
+	$activity_file = __DIR__ . '/demos/demo-bp-data/activity.php';
+	if ( ! file_exists( $activity_file ) ) {
+		return $count;
+	}
 	/** @var $activity array */
-	require __DIR__ . '/demos/demo-bp-data/activity.php';
+	require $activity_file;
 
 	for ( $i = 0; $i < 150; $i ++ ) {
 		$user_id  = $users[ array_rand( $users ) ];
@@ -334,11 +390,13 @@ function buddyx_bp_import_groups_activity() {
 }
 
 /**
- * Import groups members.
+ * Add members to groups
  *
- * @param array $groups We can import random groups or work with a predefined list.
+ * Randomly assigns users to groups
  *
- * @return array
+ * @since 3.0.0
+ * @param array $groups Optional. Array of group IDs to add members to
+ * @return array Array of group IDs that received new members
  */
 function buddyx_bp_import_groups_members( $groups = array() ) {
 
@@ -370,14 +428,14 @@ function buddyx_bp_import_groups_members( $groups = array() ) {
 }
 
 /**
- * Give ability to import forums and topics for groups.
- * Not used currently.
+ * Import forums and topics for groups
  *
- * @param array $groups
+ * Placeholder function for future forum import functionality
  *
- * @return bool
+ * @since 3.0.0
+ * @param array $groups Array of group IDs
+ * @return bool Always returns true
  */
 function buddyx_bp_import_groups_forums( $groups ) {
-
 	return true;
 }
