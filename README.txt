@@ -2,8 +2,8 @@
 Contributors: wbcomdesigns
 Tags: demo importer, demo setup, one-click demo import, WordPress demo
 Requires at least: 4.0
-Tested up to: 5.3.2
-Stable tag: 3.0.0
+Tested up to: 5.8.2
+Stable tag: 3.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -43,6 +43,17 @@ Yes, BuddyX Demo Importer supports WordPress multisite installations.
 2. **Settings Panel** - Manage dependencies and troubleshoot issues.
 
 == Changelog ==
+= 3.1.0 =
+* Added: Plugin Update Checker library for better version management.
+* Improved: Security fixes including input sanitization and SQL injection prevention.
+* Fixed: Text domain consistency and updated array syntax.
+* Updated: Plugin version requirements for bundled tools.
+* Removed: LearnDash Course Grid plugin from the default import list.
+* Added: Option to delete default data after setup.
+* Fixed: Notices related to Elementor and general plugin behavior.
+* Updated: WooCommerce marked as not required for community demo imports.
+* Improved: Demo import layout on tab and mobile devices.
+* Cleaned: Removed unused files and outdated plugin dependencies.
 
 = 3.0.0 =
 * Updated WbCom Essential and BuddyBoss Platform plugin versions.
