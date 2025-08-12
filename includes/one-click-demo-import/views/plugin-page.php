@@ -45,14 +45,6 @@ Helpers::do_action( 'ocdi/plugin_page_header' );
 		ob_start();
 		?>
 
-		<div class="ocdi__intro-text">
-			<p class="about-description">
-				<?php esc_html_e( 'Importing demo data (post, pages, images, theme settings, etc.) is the quickest and easiest way to set up your new theme.', 'one-click-demo-import' ); ?>
-				<?php esc_html_e( 'It allows you to simply edit everything instead of creating content and layouts from scratch.', 'one-click-demo-import' ); ?>
-				<a href="https://ocdi.com/user-guide/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn more', 'one-click-demo-import' ); ?></a>.
-			</p>
-		</div>
-
 		<?php
 		$plugin_intro_text = ob_get_clean();
 
@@ -100,15 +92,6 @@ Helpers::do_action( 'ocdi/plugin_page_header' );
 					<?php if ( ! empty( $theme->tags ) ) : ?>
 					<hr>
 					<p class="theme-tags"><span><?php esc_html_e( 'Tags:' ); ?></span> <?php echo esc_html( implode( ', ', $theme->tags ) ); ?></p>
-					<?php endif; ?>
-				</div>
-				<div class="bottom-content">
-					<?php if ( ! empty( $this->import_files ) ) : ?>
-						<?php if ( empty( $_GET['import-mode'] ) || 'manual' !== $_GET['import-mode'] ) : ?>
-							<a href="<?php echo esc_url( $this->get_plugin_settings_url( array( 'import-mode' => 'manual' ) ) ); ?>" class="ocdi-import-mode-switch"><?php esc_html_e( 'Switch to Manual Import', 'one-click-demo-import' ); ?></a>
-						<?php else : ?>
-							<a href="<?php echo esc_url( $this->get_plugin_settings_url() ); ?>" class="ocdi-import-mode-switch"><?php esc_html_e( 'Switch back to Theme Predefined Imports', 'one-click-demo-import' ); ?></a>
-						<?php endif; ?>
 					<?php endif; ?>
 				</div>
 			</div>

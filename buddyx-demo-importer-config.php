@@ -269,7 +269,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			$theme_plugins[] = array(
 				'name'     => 'Wbcom Essential',
 				'slug'     => 'wbcom-essential',
-				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/3.9.4/wbcom-essential.zip',
+				'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/4.0.0/wbcom-essential.zip',
 				'required' => true,
 			);
 		}
@@ -279,7 +279,7 @@ function bdi_ocdi_register_plugins( $plugins ) {
 			$theme_plugins[] = array(
 				'name'     => 'BuddyBoss Platform',
 				'slug'     => 'buddyboss-platform',
-				'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.8.80/buddyboss-platform-plugin.zip',
+				'source'   => 'https://buddyboss.com/free-downloads/buddyboss-platform.php',
 				'required' => true,
 			);
 		}
