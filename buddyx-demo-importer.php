@@ -127,7 +127,7 @@ function buddyx_demo_plugin_installer( $plugins ) {
 		$plugins[] = array(
 			'name'     => 'Wbcom Essential',
 			'slug'     => 'wbcom-essential',
-			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/4.0.0/wbcom-essential.zip',
+			'source'   => 'https://demos.wbcomdesigns.com/exporter/plugins/wbcom-essential/4.2.1/wbcom-essential-4.2.1.zip',
 			'required' => false,
 		);
 		$plugins[] = array(
