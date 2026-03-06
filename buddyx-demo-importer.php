@@ -121,7 +121,7 @@ function buddyx_demo_plugin_installer( $plugins ) {
 		$plugins[] = array(
 			'name'     => 'BuddyBoss Platform',
 			'slug'     => 'buddyboss-platform',
-			'source'   => 'https://buddyboss.com/free-downloads/buddyboss-platform.php',
+			'source'   => 'https://github.com/buddyboss/buddyboss-platform/releases/download/2.20.0/buddyboss-platform-2.20.0.zip',
 			'required' => false,
 		);
 		$plugins[] = array(
